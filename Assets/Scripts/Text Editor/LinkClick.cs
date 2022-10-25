@@ -21,7 +21,7 @@ public class LinkClick : MonoBehaviour, IPointerClickHandler
         {
             TMP_LinkInfo linkInfo = m_textMeshPro.textInfo.linkInfo[linkIndex];
             //Debug.Log($"Link ID is: {linkInfo.GetLinkID()} //and position is: {CalcLinkCenterPosition(linkIndex)}");
-            SpellingCorrectionUI.instance.InitSpellingCorection(CalcLinkCenterPosition(linkIndex));
+            SpellingCorrectionUI.instance.InitSpellingCorection(CalcLinkCenterPosition(linkIndex), linkInfo.GetLinkID());
         }
     }
 

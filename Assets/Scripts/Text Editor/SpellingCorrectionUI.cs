@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class SpellingCorrectionUI : MonoBehaviour, IDeselectHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public static SpellingCorrectionUI instance;
-
+    public static SpellingCorrectionUI instance;    
     private void Awake()
     {
         if(instance != null)
@@ -23,9 +22,12 @@ public class SpellingCorrectionUI : MonoBehaviour, IDeselectHandler, IPointerEnt
     public RectTransform childRect;
     public float offset = 20f;
 
+    public List<SpellingOptions> spellingOptions;
+
     public List<ContentSizeFitter> fitters;
 
     public float tweenTime = 1f;
+
 
 
     private Vector2 savedPos = Vector2.negativeInfinity;
@@ -38,17 +40,28 @@ public class SpellingCorrectionUI : MonoBehaviour, IDeselectHandler, IPointerEnt
     }
 
 
-    public void InitSpellingCorection(Vector2 pos)
+    public void InitSpellingCorection(Vector2 pos, string key)
     {
         if (pos == savedPos)
             return;
 
+        SetOptions(key);
         StartCoroutine(ResetFitters(fitters, pos));
     }
 
-    IEnumerator ResetFitters(List<ContentSizeFitter> fitters, Vector2 pos)
+    void SetOptions(string key)
     {
-        //todo set words
+        List<spellingWords> words = SpellingWordsManager.instance.GetWordsList(key);
+
+        for (int i = 0; i < spellingOptions.Count; i++)
+            spellingOptions[i].gameObject.SetActive(false);
+
+        for (int i = 0; i < words.Count; i++)
+            spellingOptions[i].Init(words[i], key);
+    }
+
+    IEnumerator ResetFitters(List<ContentSizeFitter> fitters, Vector2 pos)
+    {        
         yield return new WaitForEndOfFrame();
         foreach (var item in fitters)
             LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)item.transform);
@@ -67,7 +80,7 @@ public class SpellingCorrectionUI : MonoBehaviour, IDeselectHandler, IPointerEnt
         float yValue = Screen.currentResolution.height / 2 < pos.y ? -offset : offset;
         thisRect.pivot = new Vector2(thisRect.pivot.x, Screen.currentResolution.height / 2 < pos.y ? 1f : 0f);
 
-        Debug.Log($"pos: {pos}, yValue: {yValue}");
+        //Debug.Log($"pos: {pos}, yValue: {yValue}");
         thisRect.anchoredPosition = new Vector2(thisRect.anchoredPosition.x, thisRect.anchoredPosition.y + yValue);
 
         LeanTween.cancel(gameObject);
@@ -90,7 +103,6 @@ public class SpellingCorrectionUI : MonoBehaviour, IDeselectHandler, IPointerEnt
 
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
-        Debug.Log("deselect");
         savedPos = Vector2.negativeInfinity;
     }
 
