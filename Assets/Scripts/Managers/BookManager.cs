@@ -21,12 +21,27 @@ public class BookManager : MonoBehaviour
     public SpellingWordsSO spellingWordsSO; 
     public int chapterNum;
     public int gameIncrement;
+    public int chaptersUnlocked = 1;
 
 
     [ContextMenu("DrawChapters")]
     public void DrawChapter()
     {
         TextEditorUI.instance.InitText();
+    }
+
+    public void SelectChapter(int id)
+    {
+        chapterNum = id;
+        DrawChapter();
+    }
+
+    public ChapterSO GetChapter(int id)
+    {
+        if (id >= bookSO.chapters.Count)
+            return null;
+
+        return bookSO.chapters[id];
     }
 
     public string GetChapterNum()
