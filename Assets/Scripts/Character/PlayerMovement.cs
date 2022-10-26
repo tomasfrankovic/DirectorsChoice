@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	public CharacterController2D controller;
+	public CharacterInteraction interactions;
 	public Animator animator;
 
 	public float runSpeed = 40f;
@@ -16,7 +17,9 @@ public class PlayerMovement : MonoBehaviour
 	{
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
 
-		//animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
+		if (Input.GetKeyDown(KeyCode.F))
+			Interaction();
+			
 	}
 
 
@@ -24,5 +27,10 @@ public class PlayerMovement : MonoBehaviour
 	{
 		// Move our character
 		controller.Move(horizontalMove * Time.fixedDeltaTime);
+	}
+
+	void Interaction()
+    {
+		interactions.MakeInteractions();
 	}
 }
