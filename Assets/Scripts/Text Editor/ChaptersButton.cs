@@ -10,8 +10,6 @@ public class ChaptersButton : MonoBehaviour
     public GameObject buttonSelectImg;
     public TextMeshProUGUI text;
     public int id;
-
-    bool selected = false;
     public void InitBtn(int id, string name)
     {
         this.id = id;
