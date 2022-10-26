@@ -5,7 +5,6 @@ using UnityEngine.Tilemaps;
 
 public class InfiniteEnviroment : MonoBehaviour
 {
-    public Tilemap tilemap;
     public GameObject envToCopy;
 
     public Transform objToWatch;
@@ -50,9 +49,4 @@ public class InfiniteEnviroment : MonoBehaviour
 
     }
 
-    [ContextMenu("IDK")]
-    public void Idk()
-    {
-        Debug.Log("tilemap: " + tilemap.cellBounds.center);
-    }
 }
