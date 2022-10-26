@@ -353,7 +353,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 74324763322652525}
         m_TargetAssemblyTypeName: ChaptersButton, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnSelect
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

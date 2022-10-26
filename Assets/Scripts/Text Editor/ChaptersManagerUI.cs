@@ -30,10 +30,10 @@ public class ChaptersManagerUI : MonoBehaviour
         for (int i = 0; i < buttons.Count; i++)
             buttons[i].gameObject.SetActive(false);
 
-        for (int i = 0; i < BookManager.instance.chapterNum; i++)
-            buttons[i].InitBtn(i, BookManager.instance.GetChapter(i - 1).chapterName);
+        for (int i = 0; i < BookManager.instance.chaptersUnlocked; i++)
+            buttons[i].InitBtn(i, BookManager.instance.GetChapter(i).chapterName);
 
-        buttons[0].OnClick();
+        buttons[0].OnSelect();
     }
 
     public void DeselectOthers(int id)
