@@ -5,6 +5,17 @@ using UnityEngine.Tilemaps;
 
 public class InfiniteEnviroment : MonoBehaviour
 {
+    public static InfiniteEnviroment instance;
+    private void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning($"??? Multiple {instance} singletons");
+            return;
+        }
+        instance = this;
+    }
+
     public GameObject envToCopy;
 
     public Transform objToWatch;
@@ -14,7 +25,7 @@ public class InfiniteEnviroment : MonoBehaviour
 
     public float moveAmmount = 20f;
 
-    private void Start()
+    public void Init()
     {
         InitInfinity();
     }
@@ -29,6 +40,8 @@ public class InfiniteEnviroment : MonoBehaviour
         mainEnviroment = envToCopy.transform;
         secondaryEnviroment = Instantiate(mainEnviroment);
         secondaryEnviroment.position = mainEnviroment.position + (Vector3.right * moveAmmount);
+        mainEnviroment.GetComponent<SyncController>().AddToManager();
+        secondaryEnviroment.GetComponent<SyncController>().AddToManager();
     }
 
     void UpdatePositions()

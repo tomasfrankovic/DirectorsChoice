@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e2475ca1708699499d54ed7778ba538, type: 3}
   m_Name: 0.BookSO
   m_EditorClassIdentifier: 
+  introduction: {fileID: 11400000, guid: 54494e516b1e4e545815036c746d62c5, type: 2}
   chapters:
   - {fileID: 11400000, guid: ced6e35e14367964090465cf35a90049, type: 2}
   - {fileID: 11400000, guid: a23573ef5ef47fb42bd9c2d4f5ce81c5, type: 2}

@@ -12,25 +12,37 @@ public class PlayerMovement : MonoBehaviour
 
 	float horizontalMove = 0f;
 
-	// Update is called once per frame
 	void Update()
 	{
+		if(!ShowTextUI.instance.CanMove())
+        {
+			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.F))
+				ShowTextUI.instance.SkipText();
+
+
+			animator.SetBool("Walk", false);
+			horizontalMove = 0f;
+			return;
+        }
 		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+		animator.SetBool("Walk", horizontalMove != 0f);
 
 		if (Input.GetKeyDown(KeyCode.F))
 			Interaction();
-			
+		else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
+			TextEditorUI.instance.TextEditorClicked();
 	}
 
 
 	void FixedUpdate()
 	{
-		// Move our character
-		controller.Move(horizontalMove * Time.fixedDeltaTime);
+		controller.Move(TextEditorUI.instance.showedUI ? 0f : horizontalMove * Time.fixedDeltaTime);
 	}
 
 	void Interaction()
     {
-		interactions.MakeInteractions();
+		if (!TextEditorUI.instance.showedUI)
+			interactions.MakeInteractions();
 	}
+
 }

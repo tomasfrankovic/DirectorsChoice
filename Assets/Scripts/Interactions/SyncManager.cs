@@ -37,4 +37,28 @@ public class SyncManager : MonoBehaviour
         else
             syncedObjs[obj.uniqueId].Add(obj);
     }
+
+    public void InvokeTurnOff(string key)
+    {
+        if (!syncedObjs.ContainsKey(key))
+            Debug.LogWarning("Synced list doesn't contain: " + key);
+        else
+            for (int i = 0; i < syncedObjs[key].Count; i++)
+                syncedObjs[key][i].turnOffEvent.Invoke();
+    }
+
+    public void InvokeTurnOn(string key)
+    {
+        if (!syncedObjs.ContainsKey(key))
+            Debug.LogWarning("Synced list doesn't contain: " + key);
+        else
+            for (int i = 0; i < syncedObjs[key].Count; i++)
+                syncedObjs[key][i].turnOnEvent.Invoke();
+    }
+
+    [ContextMenu("GetDictCount")]
+    public void GetDictCount()
+    {
+        Debug.Log("SyncedObjs count = " + syncedObjs.Count);
+    }
 }

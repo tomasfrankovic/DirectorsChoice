@@ -8,8 +8,19 @@ using UnityEngine;
 
 public enum spellingWords
 {
-    locked,
-    unlocked,
+    lonely,
+    bright,
+    fluffy,
+    furry,
+    sleepy,
+    only,
+    wooden,
+    metal_safes,
+    dog_food,
+    rotary_telephones,
+    sofa,
+    pile_of_rocks,
+    toilet,
 }
 
 [CreateAssetMenu(fileName = "SpellingWordsSO", menuName = "ScriptableObjects/SpellingWordsSO", order = 1)]

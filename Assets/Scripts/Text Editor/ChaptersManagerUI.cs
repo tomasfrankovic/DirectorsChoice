@@ -33,7 +33,7 @@ public class ChaptersManagerUI : MonoBehaviour
         for (int i = 0; i < BookManager.instance.chaptersUnlocked; i++)
             buttons[i].InitBtn(i, BookManager.instance.GetChapter(i).chapterName);
 
-        buttons[0].OnSelect();
+        //buttons[0].OnSelect();
     }
 
     public void DeselectOthers(int id)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BookManager : MonoBehaviour
 {
@@ -23,17 +24,39 @@ public class BookManager : MonoBehaviour
     public int gameIncrement;
     public int chaptersUnlocked = 1;
 
+    public List<ContentSizeFitter> fittersToReset;
+
+
+    private void Start()
+    {
+        DrawIntroduction();
+    }
+
+    IEnumerator ResetFitters(List<ContentSizeFitter> fitters)
+    {
+        yield return new WaitForEndOfFrame();
+        foreach (var item in fitters)
+            LayoutRebuilder.ForceRebuildLayoutImmediate((RectTransform)item.transform);
+    }
 
     [ContextMenu("DrawChapters")]
-    public void DrawChapter()
+    public void DrawChapter(bool reset)
     {
-        TextEditorUI.instance.InitText();
+        TextEditorUI.instance.InitText(bookSO.chapters[chapterNum - 1], chapterNum.ToString(), reset);
+        StartCoroutine(ResetFitters(fittersToReset));
+    }
+
+    [ContextMenu("DrawIntroduction")]
+    public void DrawIntroduction()
+    {
+        TextEditorUI.instance.InitText(bookSO.introduction, "", true);
+        StartCoroutine(ResetFitters(fittersToReset));
     }
 
     public void SelectChapter(int id)
     {
         chapterNum = id;
-        DrawChapter();
+        DrawChapter(true);
     }
 
     public ChapterSO GetChapter(int id)
@@ -44,19 +67,15 @@ public class BookManager : MonoBehaviour
         return bookSO.chapters[id];
     }
 
-    public string GetChapterNum()
+    public string GetChapterTitle(ChapterSO chapter)
     {
-        return chapterNum.ToString();
+        //return bookSO.chapters[chapterNum - 1].chapterName;
+        return chapter.chapterName;
     }
 
-    public string GetChapterTitle()
+    public string GetChapterText(ChapterSO chapter)
     {
-        return bookSO.chapters[chapterNum - 1].chapterName;
-    }
-
-    public string GetChapterText()
-    {
-        List<Paragraph> paragraphs = bookSO.chapters[chapterNum - 1].paragraphs;
+        List<Paragraph> paragraphs = chapter.paragraphs;
         string chapterText = "";
 
         for (int i = 0; i < paragraphs.Count; i++)
@@ -91,7 +110,7 @@ public class BookManager : MonoBehaviour
         {
             string attr = atributes[i].Substring(1, atributes[i].Length - 2);
             string replacement = $"<link=\"{attr}\"><color=\"red\"><u>{SpellingWordsManager.instance.GetGroupWord(attr)}</color></u></link>";
-            editedText = str.Replace(atributes[i], replacement);
+            editedText = editedText.Replace(atributes[i], replacement);
         }
 
         return editedText;

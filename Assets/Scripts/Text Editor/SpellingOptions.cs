@@ -14,13 +14,14 @@ public class SpellingOptions : MonoBehaviour
         gameObject.SetActive(true);
         this.key = key;
         this.spellingWord = spellingWord;
-        text.text = spellingWord.ToString();
+        text.text = spellingWord.ToString().Replace("_", " ");
     }
 
     public void OnSelect()
     {
         SpellingWordsManager.instance.ChangeWord(key, spellingWord);
-        BookManager.instance.DrawChapter();
+        AbstractRoomLogic.instance.WordChanged(spellingWord);
+        BookManager.instance.DrawChapter(false);
         SpellingCorrectionUI.instance.CloseUI();
     }
 }

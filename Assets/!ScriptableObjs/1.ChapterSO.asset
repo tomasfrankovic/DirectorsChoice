@@ -16,14 +16,16 @@ MonoBehaviour:
   paragraphs:
   - paragraphEnum: 0
     gameIncrement: 0
-    paragraphText: \tLorem Ipsum {group1} is simply dummy text of the printing and
-      typesetting industry. Lorem Ipsum has been the industry's standard dummy text
-      ever since the 1500s, when an unknown printer took a galley of type and scrambled
-      it to make a type specimen book. It has survived not only five centuries, but
-      also the leap into electronic typesetting, remaining essentially unchanged.
-      It was popularised in the 1960s with the release of Letraset sheets containing
-      Lorem Ipsum passages, and more recently with desktop publishing software like
-      Aldus PageMaker including versions of Lorem Ipsum.
+    paragraphText: \tIn a {lonely} night, a {fluffy} writer sits in the silent hum
+      of their computer. Their face illuminated by the flickering glow of a laptop
+      monitor, they decide to get up to grab a glass of water, however, that's when
+      they realize the {only} door in the room is locked tight.
   - paragraphEnum: 0
     gameIncrement: 0
-    paragraphText: 
+    paragraphText: \n\tThe room they're in is very familiar to them, yet they feel
+      as if something was off. As all the houses were built by the creators, each
+      room's construction was aided by the Umbral Brigade. This specific room was
+      created by Umbral Brigade no. 41 which was known to put extra keys inside {metal
+      safes} for emergencies. Also provided as a standard issue for most bedrooms,
+      is a a comfortable {sofa} along with a television set, only to be used for
+      pre-recorded shows, as no signal is ever provided.

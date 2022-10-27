@@ -13,16 +13,13 @@ public class SpellingWordsManager : MonoBehaviour
             return;
         }
         instance = this;
+        Init();
     }
 
     public SpellingWordsSO spellingWordsSO;
     public Dictionary<string, spellingWords> selectedWords;
     public List<spellingWords> selectedWordsList;
 
-    private void Start()
-    {
-        Init();
-    }
     public void Init()
     {
         selectedWords = new Dictionary<string, spellingWords>();
@@ -45,7 +42,7 @@ public class SpellingWordsManager : MonoBehaviour
     public string GetGroupWord(string key)
     {
         if (selectedWords.ContainsKey(key))
-            return selectedWords[key].ToString();
+            return selectedWords[key].ToString().Replace("_", " ");
         else
             Debug.LogWarning("selectedWords doesn't contain key");
         return "";
@@ -62,5 +59,10 @@ public class SpellingWordsManager : MonoBehaviour
         }
         else
             Debug.LogWarning("selectedWords doesn't contain key");
+    }
+
+    public bool ContainsWord(spellingWords wordEnum)
+    {
+        return selectedWordsList.Contains(wordEnum);
     }
 }
