@@ -1,9 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Events;
 using UnityEngine;
 using UnityEngine.Events;
+
+#if UNITY_EDITOR
+using UnityEditor.Events;
+#endif
 
 public abstract class SyncObj : MonoBehaviour
 {
@@ -26,6 +29,7 @@ public abstract class SyncObj : MonoBehaviour
     [ContextMenu("SetEvents")]
     public void SetEvents()
     {
+#if UNITY_EDITOR
         uniqueId = gameObject.name;
 
         turnOffEvent = new UnityEvent();
@@ -40,5 +44,6 @@ public abstract class SyncObj : MonoBehaviour
             gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 
         gameObject.tag = "Interactible";
+#endif
     }
 }

@@ -7,6 +7,9 @@ public class RoomLogic1 : AbstractRoomLogic
 
     bool screwdriver;
     bool valve;
+    bool telephoneOut;
+    bool telephoneDismantle;
+    bool keyTook;
 
     public enum doorState
     {
@@ -60,7 +63,7 @@ public class RoomLogic1 : AbstractRoomLogic
                                         screwdriver = true;
                                     });
                                 },
-                                () => { ShowTextUI.instance.ShowMainText("With a slight, temporary, relief you decide not to put your hands inside a toilet."); });
+                                () => { ShowTextUI.instance.ShowMainText("You decide not to accept the company of the screwdriver."); });
                         });
                     });
                 }
@@ -75,7 +78,12 @@ public class RoomLogic1 : AbstractRoomLogic
                     else if(SpellingWordsManager.instance.ContainsWord(spellingWords.wooden) && InventoryManager.instance.selectedItem == inventoryItems.valve)
                     {
                         ShowTextUI.instance.ShowMainText("With a satisfying click, the valve fits perfectly in.", () => {
-                            ShowTextUI.instance.ShowMainText("While panting slightly from exhaustion, you stare at a glistening metal door in front of you.", () => { Debug.Log("Otvor vrata asi"); });
+                            CutsceneUI.instance.ShowCutScene(0f, () => {
+                                SyncManager.instance.InvokeTurnOn("bookcase_opened");
+                                SyncManager.instance.InvokeTurnOff("bookcase");
+                                InventoryManager.instance.RemoveItemFromInventory(inventoryItems.valve);
+                                ShowTextUI.instance.ShowMainText("While panting slightly from exhaustion, you stare at a glistening metal door in front of you.");
+                            });
                         });
                     }
                     else
@@ -96,7 +104,10 @@ public class RoomLogic1 : AbstractRoomLogic
                         if(IsItemSelected(inventoryItems.key))
                         {
                             ShowTextUI.instance.ShowMainText("The key fits snugly in the keyhole.", () => {
-                                ShowTextUI.instance.ShowMainText("With a twist and a satisfying crackle, the door unlocks.", () => {Debug.Log("Treba otvori dvere no."); actualDoorState = doorState.unlocked; });
+                                ShowTextUI.instance.ShowMainText("With a twist and a satisfying crackle, the door unlocks.", () => {
+                                    actualDoorState = doorState.unlocked;
+                                    InventoryManager.instance.RemoveItemFromInventory(inventoryItems.key);
+                                });
                             });
                         }
                         else
@@ -107,7 +118,7 @@ public class RoomLogic1 : AbstractRoomLogic
                             ShowTextUI.instance.ShowChoiceText("Enter the door?",
                                 () => {
                                     ShowTextUI.instance.ShowMainText("With an accepting wooden sound, the door opens wide.", () => {
-                                        Debug.Log("Leave room i guess");
+                                        LeaveRoom();
                                     });
                                 },
                                 () => { ShowTextUI.instance.ShowMainText("You feel an unexplainable urge to stay for a bit longer."); });
@@ -117,17 +128,72 @@ public class RoomLogic1 : AbstractRoomLogic
                         break;
                 }
                 break;
-            case "bed2":
+            case "bookcase_opened":
+                ShowTextUI.instance.ShowMainText("Although imposing, the thick metal door is innocuously unlocked.", () => {
+                    ShowTextUI.instance.ShowChoiceText("Go through the door?",
+                        () => {
+                            ShowTextUI.instance.ShowMainText("With a sharp metallic screech, the door welcomes you.", () => {
+                                LeaveRoom();
+                            });
+                        },
+                        () => { ShowTextUI.instance.ShowMainText("You decide to stay a little longer."); });
+                });
                 break;
-            case "bed3":
+            case "rotary-telephone":
+                if(IsItemSelected(inventoryItems.screwdriver) && !keyTook && IsWordSelected(spellingWords.rotary_telephones))
+                {
+                    ShowTextUI.instance.ShowMainText("You gently take the rotary telephone apart.", () => {
+                        ShowTextUI.instance.ShowMainText("It was strangely relaxing.", () => {
+                            ShowTextUI.instance.ShowMainText("Oh, and also you found a key inside. You carefully slid it into your pockets.", () => { 
+                                keyTook = true;
+                                InventoryManager.instance.AddItemToInventory(inventoryItems.key);
+                            });
+                        });
+                    });
+                }
+                else
+                {
+                    if(keyTook && !IsWordSelected(spellingWords.rotary_telephones))
+                    {
+                        ShowTextUI.instance.ShowMainText("The phone feels lighter for some reason. Moving it around you feel a click-clack, indicating an object trapped inside.", () => {
+                            ShowTextUI.instance.ShowChoiceText("Smash the phone open?",
+                                () => { ShowTextUI.instance.ShowMainText("That would just hurt you more than the phone."); },
+                                () => { ShowTextUI.instance.ShowMainText("You allow the idea to sizzle out of your mind, as you gently put the old telephone back on the soft carpet."); });
+                        });                        
+                    }
+                    else
+                    {
+                        ShowTextUI.instance.ShowMainText("An old unused rotary telephone. You feel a remorseful kinship with it.");
+                    }
+                }
+
                 break;
             case "bed":
-                ShowTextUI.instance.ShowChoiceText("Go to sleep?",
-                                () => { ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind. You decide to get back up.)");},
-                                () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
+                if (IsWordSelected(spellingWords.lonely) || telephoneOut)
+                {
+                    ShowTextUI.instance.ShowChoiceText("Go to sleep?",
+                                    () => { CutsceneUI.instance.ShowCutScene(.5f, () => { ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind. You decide to get back up."); }); },
+                                    () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
+                }
+                else
+                {
+                    ShowTextUI.instance.ShowMainText("While looking longingly at the bed, you notice a slight reflection of the starry skies on something under the bed.", () => {
+                        ShowTextUI.instance.ShowChoiceText("Reach under the bed?",
+                                    () => {
+                                        telephoneOut = true;
+                                        CutsceneUI.instance.ShowCutScene(.5f, () => {
+                                            SyncManager.instance.InvokeTurnOn("rotary-telephone");
+                                            ShowTextUI.instance.ShowMainText("You reach into the barely lit darkness until you take a firm grasp of the thing beneath the bed."); 
+                                        }); 
+                                    },
+                                    () => { ShowTextUI.instance.ShowMainText("Your heart sinks while your imagination runs wild on all the possible denizens of the under-bed."); });
+                    });
+                }
                 break;
             case "tv":
-                ShowTextUI.instance.ShowMainText("You joyfully run your hands across the CRT television, static buzzing between your fingers and the dust particles captured on the top of the glass.");
+                ShowTextUI.instance.ShowMainText("You joyfully run your hands across the CRT television.", () => {
+                    ShowTextUI.instance.ShowMainText("Static buzzing between your fingers and the dust particles captured on the top of the glass.");
+                });
                 break;
             case "sofa":
                 ShowTextUI.instance.ShowMainText("Warm memories flood your mind. Just looking at the sofa makes you comfortable.");
@@ -139,6 +205,11 @@ public class RoomLogic1 : AbstractRoomLogic
             default:
                 break;
         }
+    }
+
+    void LeaveRoom()
+    {
+        Debug.Log("Leave room i guess");
     }
 
     public override void Init()

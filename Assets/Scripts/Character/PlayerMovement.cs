@@ -12,9 +12,15 @@ public class PlayerMovement : MonoBehaviour
 
 	float horizontalMove = 0f;
 
+
+	public void PlayStepSound()
+    {
+		SoundManager.instance.PlayStep();
+	}
+
 	void Update()
 	{
-		if(!ShowTextUI.instance.CanMove())
+		if(!ShowTextUI.instance.CanMove() || CutsceneUI.instance.isCutscene)
         {
 			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.F))
 				ShowTextUI.instance.SkipText();
@@ -24,24 +30,32 @@ public class PlayerMovement : MonoBehaviour
 			horizontalMove = 0f;
 			return;
         }
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-		animator.SetBool("Walk", horizontalMove != 0f);
+		if (StartWindows.instance.IsShowedUI())
+		{
+			animator.SetBool("Walk", false);
+			horizontalMove = 0f;
+		}
+		else
+		{
+			horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+			animator.SetBool("Walk", horizontalMove != 0f);
+		}
 
 		if (Input.GetKeyDown(KeyCode.F))
 			Interaction();
-		else if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape))
-			TextEditorUI.instance.TextEditorClicked();
+		else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && !StartWindows.instance.animLock)
+			StartWindows.instance.TextEditorClicked();
 	}
 
 
 	void FixedUpdate()
 	{
-		controller.Move(TextEditorUI.instance.showedUI ? 0f : horizontalMove * Time.fixedDeltaTime);
+		controller.Move(horizontalMove * Time.fixedDeltaTime);
 	}
 
 	void Interaction()
     {
-		if (!TextEditorUI.instance.showedUI)
+		if (!StartWindows.instance.IsShowedUI())
 			interactions.MakeInteractions();
 	}
 

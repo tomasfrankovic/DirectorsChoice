@@ -19,7 +19,7 @@ public abstract class AbstractRoomLogic : MonoBehaviour
     public abstract void InteractionHappened(string interaction);
     public abstract void Init();
 
-    public bool BookContains(spellingWords word)
+    public bool IsWordSelected(spellingWords word)
     {
         return SpellingWordsManager.instance.ContainsWord(word);
     }

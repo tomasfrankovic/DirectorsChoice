@@ -14,7 +14,7 @@ public class TextEditorUI : MonoBehaviour
             return;
         }
         instance = this;
-        thisRect.gameObject.SetActive(false);
+        //thisRect.gameObject.SetActive(false);
     }
 
     public TextMeshProUGUI chapterBackButton;
