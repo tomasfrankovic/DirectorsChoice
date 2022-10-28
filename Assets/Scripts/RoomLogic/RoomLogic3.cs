@@ -53,7 +53,7 @@ public class RoomLogic3 : AbstractRoomLogic
                 });
                 break;
             case "bathtub":
-                if(flashlightTook)
+                if(!flashlightTook)
                 {
                     ShowTextUI.instance.ShowMainText("A tiny little light compared to its hallway brethren.", () => {
                         ShowTextUI.instance.ShowMainText("A tiny little light compared to its hallway brethren.", () => {

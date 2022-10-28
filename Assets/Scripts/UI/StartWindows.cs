@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using UnityEngine.UI;
 
 public class StartWindows : MonoBehaviour
@@ -26,6 +27,7 @@ public class StartWindows : MonoBehaviour
     public GameObject desktop;
     public GameObject word;
     public GameObject win;
+    public TextMeshProUGUI statsText;
 
     bool end;
     private void Start()
@@ -47,6 +49,7 @@ public class StartWindows : MonoBehaviour
         word.SetActive(false);
         Show();
         end = true;
+        FirebaseManager.instance.Increment();
     }
 
     public void ShowDesktop()
