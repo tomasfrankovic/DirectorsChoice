@@ -49,7 +49,7 @@ public class BookManager : MonoBehaviour
     [ContextMenu("DrawChapters")]
     public void DrawChapter(bool reset)
     {
-        TextEditorUI.instance.InitText(bookSO.chapters[chapterNum - 1], chapterNum.ToString(), reset, newParagraphs.Count > 0);
+        TextEditorUI.instance.InitText(bookSO.chapters[chapterNum - 1], chapterNum.ToString());
         StartCoroutine(ResetFitters(fittersToReset));
     }
 
@@ -90,6 +90,7 @@ public class BookManager : MonoBehaviour
         newParagraphs.Clear();
         BookNotif.instance.Hide();
         DrawChapter(false);
+        TextEditorUI.instance.ShowUpdatedText(false);
     }
 
     public string GetChapterText(ChapterSO chapter)
@@ -124,8 +125,12 @@ public class BookManager : MonoBehaviour
         if (!oldParagraphs.Contains(paragraph))
         {
             if (!newParagraphs.Contains(paragraph))
+            {
+                newParagraphs.Add(paragraph);
                 BookNotif.instance.Show();
-            newParagraphs.Add(paragraph);
+                TextEditorUI.instance.ShowUpdatedText(true);
+            }
+            
             return true;
         }
         return false;

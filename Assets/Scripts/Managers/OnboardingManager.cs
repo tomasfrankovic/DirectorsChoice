@@ -87,7 +87,10 @@ public class OnboardingManager : MonoBehaviour
     public void ShowSpace(bool show)
     {
         if (show)
+        {
+            BookManager.instance.ChangeIncrement(1);
             MoveIn(space);
+        }
         else
             MoveOut(space);
     }
@@ -97,12 +100,11 @@ public class OnboardingManager : MonoBehaviour
         onboardingIndex++;
         MoveOut(arrows);
         ShowAction(false);
-        BookManager.instance.ChangeIncrement(1);
     }
 
     public void NtbInteracted()
     {
         onboardingIndex++;
-        ShowSpace(false);
+        //ShowSpace(false);
     }
 }
