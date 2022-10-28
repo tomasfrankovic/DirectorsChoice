@@ -168,7 +168,7 @@ public class RoomLogic2 : AbstractRoomLogic
             case "door-double-glass":
                 ShowTextUI.instance.ShowMainText("The tall double doors stand in front of you. The air feels heavy in its presence.", () => {
                 ShowTextUI.instance.ShowChoiceText("Are you sure you want to continue?",
-                        () => { ShowTextUI.instance.ShowMainText("The tall double doors stand in front of you. The air feels heavy in its presence."); Debug.Log("end?"); },
+                        () => { ShowTextUI.instance.ShowMainText("The tall double doors stand in front of you. The air feels heavy in its presence."); StartWindows.instance.ShowWin(); },
                         () => { ShowTextUI.instance.ShowMainText("You decide it might be a bad idea, for now."); }
                     );
                 });

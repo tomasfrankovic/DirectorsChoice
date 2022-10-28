@@ -25,7 +25,9 @@ public class StartWindows : MonoBehaviour
 
     public GameObject desktop;
     public GameObject word;
+    public GameObject win;
 
+    bool end;
     private void Start()
     {
         gameObject.transform.localPosition = new Vector3(0f, -300f);
@@ -36,6 +38,15 @@ public class StartWindows : MonoBehaviour
 
         if(OnboardingManager.instance != null)
             Show();
+    }
+
+    public void ShowWin()
+    {
+        win.SetActive(true);
+        desktop.SetActive(false);
+        word.SetActive(false);
+        Show();
+        end = true;
     }
 
     public void ShowDesktop()
@@ -83,6 +94,7 @@ public class StartWindows : MonoBehaviour
 
     public void Hide()
     {
+        if (end) return;
         showedUI = false;
         HideScreen();
         BookManager.instance.MergeParagraphs();
