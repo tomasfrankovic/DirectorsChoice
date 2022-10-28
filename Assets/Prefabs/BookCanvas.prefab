@@ -2147,7 +2147,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &701398222551389742
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5038,7 +5038,7 @@ MonoBehaviour:
   showedUI: 0
   desktop: {fileID: 5474766529104300610}
   word: {fileID: 4359883484429975413}
-  win: {fileID: 0}
+  win: {fileID: 2426715458002385746}
 --- !u!95 &6483603951749915891
 Animator:
   serializedVersion: 4
