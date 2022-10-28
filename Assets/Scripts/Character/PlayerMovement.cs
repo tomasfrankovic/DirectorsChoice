@@ -15,6 +15,10 @@ public class PlayerMovement : MonoBehaviour
 		instance = this;
 	}
 
+	public static bool hasFlashlight;
+
+	public GameObject flashlight;
+
 	public CharacterController2D controller;
 	public CharacterInteraction interactions;
 	public Animator animator;
@@ -23,8 +27,20 @@ public class PlayerMovement : MonoBehaviour
 
 	float horizontalMove = 0f;
 
+    private void Start()
+    {
+		flashlight.SetActive(hasFlashlight);
+		SyncManager.instance.InvokeTurnOff("ScareArea");
+	}
 
-	public void PlayStepSound()
+	public void SetFlashlight()
+    {
+		hasFlashlight = true;
+		flashlight.SetActive(hasFlashlight);
+		SyncManager.instance.InvokeTurnOff("ScareArea");
+	}
+
+    public void PlayStepSound()
     {
 		SoundManager.instance.PlayStep();
 	}

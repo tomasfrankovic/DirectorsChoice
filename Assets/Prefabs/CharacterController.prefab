@@ -569,6 +569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d00337af1934d6479378c67fb65eeb9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flashlight: {fileID: 5108612332929797634}
   controller: {fileID: 7928128725402953732}
   interactions: {fileID: 7928128725402953730}
   animator: {fileID: 7928128725402953733}

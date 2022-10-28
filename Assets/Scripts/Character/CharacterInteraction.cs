@@ -21,6 +21,8 @@ public class CharacterInteraction : MonoBehaviour
                 OnboardingManager.instance.ShowAction(true);
                 collisions.Add(collision);
             }
+            else if (OnboardingManager.onboardingIndex == 0 && OnboardingManager.instance != null)
+                return;
             else
                 collisions.Add(collision);
         }
@@ -35,7 +37,7 @@ public class CharacterInteraction : MonoBehaviour
                 OnboardingManager.instance.ShowAction(false);
                 collisions.Remove(collision);
             }
-            else
+            else if(collisions.Contains(collision))
                 collisions.Remove(collision);
         }
     }
@@ -44,6 +46,8 @@ public class CharacterInteraction : MonoBehaviour
     {
         if (collisions.Count == 0)
             Debug.LogWarning("No colliders to interact with");
+
+
 
         for (int i = 0; i < collisions.Count; i++)
         {

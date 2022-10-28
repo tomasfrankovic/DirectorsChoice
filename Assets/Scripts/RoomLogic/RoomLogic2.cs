@@ -28,7 +28,7 @@ public class RoomLogic2 : AbstractRoomLogic
                     ShowTextUI.instance.ShowChoiceText("Enter the door?",
                         () => {
                             ShowTextUI.instance.ShowMainText("With an accepting wooden sound, the door opens wide.", () => {
-                                SceneChangeManager.instance.ChangeScene("Scene1");
+                                SceneChangeManager.instance.ChangeScene("Game1");
                             });
                         },
                         () => { ShowTextUI.instance.ShowMainText("You prefer not to."); });
@@ -93,7 +93,7 @@ public class RoomLogic2 : AbstractRoomLogic
                         () => { ShowTextUI.instance.ShowMainText("You prefer not to."); });
                 });
                 break;
-            case "door_bathroom":
+            case "door-bathroom":
                 ShowTextUI.instance.ShowMainText("A pale wooden door stands in front of you.", () => {
                     ShowTextUI.instance.ShowChoiceText("Enter?",
                         () => {

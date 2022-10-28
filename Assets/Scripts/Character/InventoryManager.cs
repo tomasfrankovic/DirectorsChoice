@@ -63,6 +63,16 @@ public class InventoryManager : MonoBehaviour
         UpdateUI();
     }   
 
+    public void FlashlightCheck()
+    {
+        if(storedItems.Contains(inventoryItems.flashlight) && storedItems.Contains(inventoryItems.battery))
+        {
+            RemoveItemFromInventory(inventoryItems.flashlight);
+            RemoveItemFromInventory(inventoryItems.battery);
+            PlayerMovement.instance.SetFlashlight();
+        }
+    }
+
     public void RemoveItemFromInventory(inventoryItems item)
     {
         if (AbstractRoomLogic.instance.simulationRunning) return;

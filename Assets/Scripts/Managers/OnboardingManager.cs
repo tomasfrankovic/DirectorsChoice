@@ -45,7 +45,7 @@ public class OnboardingManager : MonoBehaviour
 
             Wait(1f, () =>
             {
-            ShowTextUI.instance.ShowMainText("I'm so thirsty! Let's get some water", () => { MoveIn(arrows); });
+            ShowTextUI.instance.ShowMainText("You feel parched after hours of tenuous work. Maybe you should get some water from the kitchen.", () => { MoveIn(arrows); });
             });
         });
     }
