@@ -100,6 +100,7 @@ public class OnboardingManager : MonoBehaviour
         onboardingIndex++;
         MoveOut(arrows);
         ShowAction(false);
+        SoundManager.instance.PlayMusic("music");
     }
 
     public void NtbInteracted()
