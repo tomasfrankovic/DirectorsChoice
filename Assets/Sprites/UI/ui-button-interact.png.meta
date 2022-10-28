@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 467cdb665b1ade5418c3a10bfd75bbb1
+guid: e0d4632deb6361c43b88b1aa6b2e4968
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fox-sleepy_0
+      name: ui-button-interact_0
       rect:
         serializedVersion: 2
         x: 0
@@ -121,14 +121,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 862d63fa7acd8da4583b3e7345e4cf1b
-      internalID: 341302970
+      spriteID: 2cc189010e5620148a0cc991d174d9bd
+      internalID: 1322128015
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fox-sleepy_1
+      name: ui-button-interact_1
       rect:
         serializedVersion: 2
         x: 32
@@ -142,92 +142,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f6f0cc88d3ef9943b4212ff856bcd6c
-      internalID: 1395009167
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fox-sleepy_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ac1cfa6a33631c4fa0c7ca69585930d
-      internalID: -550555609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fox-sleepy_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f87b26a1f4c7daf48bb99097f94246e6
-      internalID: 1957914827
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fox-sleepy_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7de16240fd627a4478b26f2b757c4430
-      internalID: 599295120
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fox-sleepy_5
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a2f686391d0d5f54380434ec4efcaa1b
-      internalID: 1722376608
+      spriteID: 442adaf1ece33c74796a0f3311be7e9a
+      internalID: 1735523632
       vertices: []
       indices: 
       edges: []
@@ -243,12 +159,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fox-sleepy_4: 599295120
-      fox-sleepy_2: -550555609
-      fox-sleepy_1: 1395009167
-      fox-sleepy_3: 1957914827
-      fox-sleepy_0: 341302970
-      fox-sleepy_5: 1722376608
+      ui-button-interact_0: 1322128015
+      ui-button-interact_1: 1735523632
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

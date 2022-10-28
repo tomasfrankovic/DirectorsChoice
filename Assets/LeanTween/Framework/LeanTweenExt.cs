@@ -5,6 +5,30 @@ using System;
 
 public static class LeanTweenExt
 {
+    public static LTDescr LeanAnchoredPos(this RectTransform rect, Vector2 to, float time)
+    {
+        var _pos = rect.anchoredPosition;
+        var _tween = LeanTween
+            .value(rect.gameObject, _pos, to, time)
+            .setOnUpdate((Vector2 _value) => {
+                _pos = _value;
+                rect.anchoredPosition = _pos;
+            });
+        return _tween;
+    }
+
+
+    public static LTDescr LeanAlphaText(this TextMesh textMesh, float to, float time)
+    {
+        var _color = textMesh.color;
+        var _tween = LeanTween
+            .value(textMesh.gameObject, _color.a, to, time)
+            .setOnUpdate((float _value) => {
+                _color.a = _value;
+                textMesh.color = _color;
+            });
+        return _tween;
+    }
     //LeanTween.addListener
     //LeanTween.alpha
     public static LTDescr LeanAlpha(this GameObject gameObject, float to, float time) { return LeanTween.alpha(gameObject, to, time); }

@@ -11,13 +11,29 @@ public class CharacterInteraction : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Interactible"))
-            collisions.Add(collision);
+        {
+            if (OnboardingManager.onboardingIndex == 0 && OnboardingManager.instance != null && collision.name == "door_tuto")
+            {
+                OnboardingManager.instance.ShowAction(true);
+                collisions.Add(collision);
+            }
+            else
+                collisions.Add(collision);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Interactible"))
-            collisions.Remove(collision);
+        {
+            if (OnboardingManager.onboardingIndex == 0 && OnboardingManager.instance != null && collision.name == "door_tuto")
+            {
+                OnboardingManager.instance.ShowAction(false);
+                collisions.Remove(collision);
+            }
+            else
+                collisions.Remove(collision);
+        }
     }
 
     public void MakeInteractions()

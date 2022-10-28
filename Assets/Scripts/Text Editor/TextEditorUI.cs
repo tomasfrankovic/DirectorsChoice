@@ -35,37 +35,8 @@ public class TextEditorUI : MonoBehaviour
         ChaptersManagerUI.instance.DeselectOthers(-1);
     }
 
-    public void TextEditorClicked()
-    {
-        if (showedUI)
-            Hide();
-        else
-            Show();
-    }
 
-    [ContextMenu("Show")]
-    public void Show()
-    {
-        LeanTween.cancel(thisRect);
-        if (!thisRect.gameObject.activeSelf)
-        {
-            thisRect.gameObject.SetActive(true);
-            thisRect.transform.localPosition = new Vector3(0f, -1500f);
-        }
-
-        thisRect.LeanMoveLocalY(0f, 1f).setEaseOutExpo();
-        showedUI = true;
-    }
-
-    [ContextMenu("Hide")]
-    public void Hide()
-    {
-        LeanTween.cancel(thisRect);
-        thisRect.LeanMoveLocalY(-1500f, 1f).setEaseOutExpo();
-        showedUI = false;
-    }
-
-    public void InitText(ChapterSO chapter, string page, bool reset = false)
+    public void InitText(ChapterSO chapter, string page, bool reset = false, bool upatedText = false)
     {
         BookManager bookManager = BookManager.instance;
         chapterBackButton.gameObject.SetActive(page != "");

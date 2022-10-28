@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 467cdb665b1ade5418c3a10bfd75bbb1
+guid: a83b00f78d5d6c94fbf9e1a5aec261a0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,13 +107,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: fox-sleepy_0
+      name: word-icon_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,20 +121,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 862d63fa7acd8da4583b3e7345e4cf1b
-      internalID: 341302970
+      spriteID: 4cd4535d1f2c10b4b8551463c1d89425
+      internalID: -315669538
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fox-sleepy_1
+      name: word-icon_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 48
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,41 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f6f0cc88d3ef9943b4212ff856bcd6c
-      internalID: 1395009167
+      spriteID: 7902ede10de10a54cab758b726ce4245
+      internalID: -1989721707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fox-sleepy_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3ac1cfa6a33631c4fa0c7ca69585930d
-      internalID: -550555609
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: fox-sleepy_3
+      name: word-icon_2
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f87b26a1f4c7daf48bb99097f94246e6
-      internalID: 1957914827
+      spriteID: 141e15d1092220346a4a88fc61665e54
+      internalID: 1252506501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fox-sleepy_4
+      name: word-icon_3
       rect:
         serializedVersion: 2
-        x: 128
+        x: 144
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7de16240fd627a4478b26f2b757c4430
-      internalID: 599295120
+      spriteID: da4a592fa4e5a8148bb8b1562ff6e311
+      internalID: -1766804767
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: fox-sleepy_5
+      name: word-icon_4
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 48
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,8 +205,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a2f686391d0d5f54380434ec4efcaa1b
-      internalID: 1722376608
+      spriteID: 8001bef5591c39449bcc8d454bd9d561
+      internalID: -83404332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: word-icon_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c7f4d1d10e2b724283d732196e4423e
+      internalID: 470988176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: word-icon_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d93ff0454e91fb24ea6dfa047c2f6b80
+      internalID: 998173612
       vertices: []
       indices: 
       edges: []
@@ -243,12 +264,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      fox-sleepy_4: 599295120
-      fox-sleepy_2: -550555609
-      fox-sleepy_1: 1395009167
-      fox-sleepy_3: 1957914827
-      fox-sleepy_0: 341302970
-      fox-sleepy_5: 1722376608
+      word-icon_3: -1766804767
+      word-icon_5: 470988176
+      word-icon_4: -83404332
+      word-icon_0: -315669538
+      word-icon_2: 1252506501
+      word-icon_1: -1989721707
+      word-icon_6: 998173612
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

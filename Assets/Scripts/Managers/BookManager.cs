@@ -21,7 +21,7 @@ public class BookManager : MonoBehaviour
     public BookSO bookSO;
     public SpellingWordsSO spellingWordsSO; 
     public int chapterNum;
-    public int gameIncrement;
+    public int gameIncrement = 0;
     public int chaptersUnlocked = 1;
 
     public List<ContentSizeFitter> fittersToReset;
@@ -29,7 +29,14 @@ public class BookManager : MonoBehaviour
 
     private void Start()
     {
-        DrawIntroduction();
+        //DrawIntroduction();
+        SelectChapter(1);
+    }
+
+    public void ChangeIncrement(int increment)
+    {
+        gameIncrement = increment;
+        DrawChapter(false);
     }
 
     IEnumerator ResetFitters(List<ContentSizeFitter> fitters)
@@ -42,7 +49,7 @@ public class BookManager : MonoBehaviour
     [ContextMenu("DrawChapters")]
     public void DrawChapter(bool reset)
     {
-        TextEditorUI.instance.InitText(bookSO.chapters[chapterNum - 1], chapterNum.ToString(), reset);
+        TextEditorUI.instance.InitText(bookSO.chapters[chapterNum - 1], chapterNum.ToString(), reset, newParagraphs.Count > 0);
         StartCoroutine(ResetFitters(fittersToReset));
     }
 
@@ -73,6 +80,18 @@ public class BookManager : MonoBehaviour
         return chapter.chapterName;
     }
 
+    List<Paragraph> oldParagraphs = new List<Paragraph>();
+    List<Paragraph> newParagraphs = new List<Paragraph>();
+
+    public void MergeParagraphs()
+    {
+        foreach (var item in newParagraphs)
+            oldParagraphs.Add(item);
+        newParagraphs.Clear();
+        BookNotif.instance.Hide();
+        DrawChapter(false);
+    }
+
     public string GetChapterText(ChapterSO chapter)
     {
         List<Paragraph> paragraphs = chapter.paragraphs;
@@ -84,11 +103,11 @@ public class BookManager : MonoBehaviour
             switch (paragraph.paragraphEnum)
             {
                 case paragraphEnum.alwaysShow:
-                    chapterText += GetEditedString(paragraph.paragraphText);
+                    chapterText += GetEditedString(paragraph.paragraphText, CheckNewParagraph(paragraph));
                     break;
                 case paragraphEnum.gameIncrement:
                     if(paragraph.gameIncrement <= gameIncrement)
-                        chapterText += GetEditedString(paragraph.paragraphText);
+                        chapterText += GetEditedString(paragraph.paragraphText, CheckNewParagraph(paragraph));
                     break;
                 default:
                     break;                
@@ -98,6 +117,18 @@ public class BookManager : MonoBehaviour
         chapterText = chapterText.Replace("\\n", "\n").Replace("\\t", "\t");
 
         return chapterText;
+    }
+
+    bool CheckNewParagraph(Paragraph paragraph)
+    {
+        if (!oldParagraphs.Contains(paragraph))
+        {
+            if (!newParagraphs.Contains(paragraph))
+                BookNotif.instance.Show();
+            newParagraphs.Add(paragraph);
+            return true;
+        }
+        return false;
     }
 
     public string GetEditedString(string str, bool addedText = false)
@@ -112,6 +143,8 @@ public class BookManager : MonoBehaviour
             string replacement = $"<link=\"{attr}\"><color=\"red\"><u>{SpellingWordsManager.instance.GetGroupWord(attr)}</color></u></link>";
             editedText = editedText.Replace(atributes[i], replacement);
         }
+        if (addedText)
+            editedText = $"<mark=#04d40f70>{editedText}</mark>";
 
         return editedText;
     }

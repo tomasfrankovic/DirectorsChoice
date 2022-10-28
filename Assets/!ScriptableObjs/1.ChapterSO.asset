@@ -14,14 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapterName: The Beggining
   paragraphs:
-  - paragraphEnum: 0
-    gameIncrement: 0
+  - paragraphEnum: 1
+    gameIncrement: 1
     paragraphText: \tIn a {lonely} night, a {fluffy} writer sits in the silent hum
       of their computer. Their face illuminated by the flickering glow of a laptop
       monitor, they decide to get up to grab a glass of water, however, that's when
       they realize the {only} door in the room is locked tight.
-  - paragraphEnum: 0
-    gameIncrement: 0
+  - paragraphEnum: 1
+    gameIncrement: 2
     paragraphText: \n\tThe room they're in is very familiar to them, yet they feel
       as if something was off. As all the houses were built by the creators, each
       room's construction was aided by the Umbral Brigade. This specific room was

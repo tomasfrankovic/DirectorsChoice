@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+	public static PlayerMovement instance;
+	private void Awake()
+	{
+		if (instance != null)
+		{
+			Debug.LogWarning($"??? Multiple {instance} singletons");
+			return;
+		}
+		instance = this;
+	}
+
 	public CharacterController2D controller;
 	public CharacterInteraction interactions;
 	public Animator animator;
@@ -22,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if(!ShowTextUI.instance.CanMove() || CutsceneUI.instance.isCutscene)
         {
-			if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.F))
+			if (Input.anyKeyDown)
 				ShowTextUI.instance.SkipText();
 
 
@@ -43,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.F))
 			Interaction();
-		else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Escape)) && !StartWindows.instance.animLock)
+		else if ((Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Backspace)) && !StartWindows.instance.animLock)
 			StartWindows.instance.TextEditorClicked();
 	}
 

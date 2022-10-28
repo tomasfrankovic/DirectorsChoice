@@ -23,6 +23,9 @@ public class StartWindows : MonoBehaviour
     public bool animLock;
     public bool showedUI = false;
 
+    public GameObject desktop;
+    public GameObject word;
+
     private void Start()
     {
         gameObject.transform.localPosition = new Vector3(0f, -300f);
@@ -33,6 +36,21 @@ public class StartWindows : MonoBehaviour
         Show();
     }
 
+    public void ShowDesktop()
+    {
+        desktop.SetActive(true);
+        word.SetActive(false);
+    }
+
+    public void ShowWord()
+    {
+        if (OnboardingManager.instance != null)
+            OnboardingManager.instance.OpenedWord();
+
+        desktop.SetActive(false);
+        word.SetActive(true);
+    }
+
     public bool IsShowedUI()
     {
         return animLock || showedUI;
@@ -40,6 +58,15 @@ public class StartWindows : MonoBehaviour
 
     public void TextEditorClicked()
     {
+        if (OnboardingManager.instance != null)
+        {
+            if (OnboardingManager.onboardingIndex == 0)
+                return;
+            else if (OnboardingManager.onboardingIndex == 1)
+                OnboardingManager.instance.NtbInteracted();
+        }
+            
+
         if (showedUI)
             Hide();
         else
@@ -56,6 +83,7 @@ public class StartWindows : MonoBehaviour
     {
         showedUI = false;
         HideScreen();
+        BookManager.instance.MergeParagraphs();
     }
 
     public void TweenHideLaptop()

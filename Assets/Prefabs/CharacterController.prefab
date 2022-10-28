@@ -1,5 +1,116 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &729480930337333444
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7357381286429378172}
+  - component: {fileID: 8163375012687349567}
+  m_Layer: 0
+  m_Name: SleepShadow
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7357381286429378172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729480930337333444}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.005, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7928128725402953752}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8163375012687349567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729480930337333444}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 0
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 00000000
+  m_ShapePath:
+  - {x: -0.18958569, y: 0.62242794, z: 0}
+  - {x: -0.18936491, y: 0.5618653, z: 0}
+  - {x: -0.25031757, y: 0.5602617, z: 0}
+  - {x: -0.25192118, y: 0.49930906, z: 0}
+  - {x: -0.31447792, y: 0.50091314, z: 0}
+  - {x: -0.32046366, y: 0.37637806, z: 0}
+  - {x: -0.3770342, y: 0.37419605, z: 0}
+  - {x: -0.38024235, y: 0.13199043, z: 0}
+  - {x: -0.31126976, y: 0.13038635, z: 0}
+  - {x: -0.30966568, y: 0.064621925, z: 0}
+  - {x: -0.25512934, y: 0.061413765, z: 0}
+  - {x: -0.25512934, y: -0.05567932, z: 0}
+  - {x: -0.3080616, y: -0.0572834, z: 0}
+  - {x: -0.31126976, y: -0.12144375, z: 0}
+  - {x: -0.3738265, y: -0.12144375, z: 0}
+  - {x: -0.3770342, y: -0.30750895, z: 0}
+  - {x: -0.31768608, y: -0.30911303, z: 0}
+  - {x: -0.31447792, y: -0.37487745, z: 0}
+  - {x: -0.2583375, y: -0.37648153, z: 0}
+  - {x: -0.2647543, y: -0.4919715, z: 0}
+  - {x: -0.37222338, y: -0.5753803, z: 0}
+  - {x: -0.31321716, y: -0.6895046, z: 0}
+  - {x: -0.13698578, y: -0.68786955, z: 0}
+  - {x: -0.13183737, y: -0.62479925, z: 0}
+  - {x: -0.023717403, y: -0.45360947, z: 0}
+  - {x: 0.06252098, y: -0.6273737, z: 0}
+  - {x: 0.059946537, y: -0.6865821, z: 0}
+  - {x: 0.24658203, y: -0.6840081, z: 0}
+  - {x: 0.300642, y: -0.62351227, z: 0}
+  - {x: 0.30235004, y: -0.5736618, z: 0}
+  - {x: 0.18222523, y: -0.50252104, z: 0}
+  - {x: 0.1783638, y: -0.3750944, z: 0}
+  - {x: 0.2427206, y: -0.31202412, z: 0}
+  - {x: 0.30836487, y: -0.31073713, z: 0}
+  - {x: 0.304749, y: -0.1274643, z: 0}
+  - {x: 0.2414918, y: -0.1284523, z: 0}
+  - {x: 0.24248028, y: -0.06519556, z: 0}
+  - {x: 0.18021154, y: -0.06420708, z: 0}
+  - {x: 0.17927313, y: 0.059833527, z: 0}
+  - {x: 0.24323988, y: 0.12577677, z: 0}
+  - {x: 0.30406713, y: 0.12646008, z: 0}
+  - {x: 0.3061087, y: 0.37485456, z: 0}
+  - {x: 0.24443913, y: 0.37273312, z: 0}
+  - {x: 0.24129248, y: 0.49502087, z: 0}
+  - {x: 0.17766619, y: 0.49357462, z: 0}
+  - {x: 0.17477417, y: 0.5615392, z: 0}
+  - {x: 0.11548567, y: 0.5629854, z: 0}
+  - {x: 0.116931915, y: 0.62516546, z: 0}
+  - {x: 0.059090137, y: 0.62227345, z: 0}
+  - {x: 0.054751873, y: 0.5600929, z: 0}
+  - {x: -0.0016436577, y: 0.5586467, z: 0}
+  - {x: -0.004536152, y: 0.49935913, z: 0}
+  - {x: -0.07105446, y: 0.5008049, z: 0}
+  - {x: -0.07105446, y: 0.5615392, z: 0}
+  - {x: -0.13034248, y: 0.5629854, z: 0}
+  - {x: -0.13178873, y: 0.62227345, z: 0}
+  m_ShapePathHash: -1101394099
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -1886654
 --- !u!1 &7928128725402953757
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +149,7 @@ Transform:
   - {fileID: 7928128726637424521}
   - {fileID: 7928128726643142261}
   - {fileID: 7928128725628728214}
+  - {fileID: 7357381286429378172}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,7 +251,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 4
+  m_Constraints: 6
 --- !u!212 &7928128725402953731
 SpriteRenderer:
   m_ObjectHideFlags: 0

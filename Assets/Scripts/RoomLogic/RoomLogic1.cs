@@ -96,8 +96,10 @@ public class RoomLogic1 : AbstractRoomLogic
                 switch (actualDoorState)
                 {
                     case doorState.initial:
+                        if(OnboardingManager.instance)
+                            OnboardingManager.instance.DoorInteracted();
                         ShowTextUI.instance.ShowMainText("You try twisting the handle… but the door refuses to open.", () => {
-                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => { actualDoorState = doorState.locked; });
+                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => { actualDoorState = doorState.locked; OnboardingManager.instance.ShowSpace(true); });
                         });
                         break;
                     case doorState.locked:
@@ -231,10 +233,13 @@ public class RoomLogic1 : AbstractRoomLogic
                 SyncManager.instance.InvokeTurnOff("Window_dark");
                 break;
             case spellingWords.fluffy:
+                PlayerMovement.instance.animator.SetBool("Sleepy", false);
                 break;
             case spellingWords.furry:
+                PlayerMovement.instance.animator.SetBool("Sleepy", false);
                 break;
             case spellingWords.sleepy:
+                PlayerMovement.instance.animator.SetBool("Sleepy", true);
                 break;
             case spellingWords.only:
                 break;
