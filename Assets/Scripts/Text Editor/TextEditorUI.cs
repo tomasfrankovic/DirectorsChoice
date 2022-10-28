@@ -36,7 +36,7 @@ public class TextEditorUI : MonoBehaviour
     }
 
 
-    public void InitText(ChapterSO chapter, string page, bool reset = false, bool upatedText = false)
+    public void InitText(ChapterSO chapter, string page, bool reset = false)
     {
         BookManager bookManager = BookManager.instance;
         chapterBackButton.gameObject.SetActive(page != "");
@@ -48,5 +48,10 @@ public class TextEditorUI : MonoBehaviour
         addedTextGO.SetActive(false);
         if(reset)
             contentReset.anchoredPosition = new Vector2(contentReset.anchoredPosition.x, 0f);
+    }
+
+    public void ShowUpdatedText(bool show)
+    {
+        addedTextGO.SetActive(show);
     }
 }
