@@ -12,6 +12,8 @@ public enum inventoryItems
     key,
     battery,
     hall_key,
+    flashlight,
+    fuse,
 }
 
 public class InventoryManager : MonoBehaviour

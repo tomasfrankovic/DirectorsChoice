@@ -22,6 +22,7 @@ public class InfiniteEnviroment : MonoBehaviour
 
     public Transform mainEnviroment;
     public Transform secondaryEnviroment;
+    public Transform thirdEnviroment;
 
     public float moveAmmount = 20f;
 
@@ -38,10 +39,21 @@ public class InfiniteEnviroment : MonoBehaviour
     public void InitInfinity()
     {
         mainEnviroment = envToCopy.transform;
+
         secondaryEnviroment = Instantiate(mainEnviroment);
-        secondaryEnviroment.position = mainEnviroment.position + (Vector3.right * moveAmmount);
+
+        thirdEnviroment = Instantiate(mainEnviroment);
+
         mainEnviroment.GetComponent<SyncController>().AddToManager();
         secondaryEnviroment.GetComponent<SyncController>().AddToManager();
+        thirdEnviroment.GetComponent<SyncController>().AddToManager();
+        SetEnvs();
+    }
+
+    void SetEnvs()
+    {
+        secondaryEnviroment.position = mainEnviroment.position + (Vector3.right * moveAmmount);
+        thirdEnviroment.position = mainEnviroment.position + (Vector3.left * moveAmmount);
     }
 
     void UpdatePositions()
@@ -54,15 +66,25 @@ public class InfiniteEnviroment : MonoBehaviour
             Transform temp = mainEnviroment;
             mainEnviroment = secondaryEnviroment;
             secondaryEnviroment = temp;
+            SetEnvs();
+        }
+        else if (Vector2.Distance(objToWatch.position, mainEnviroment.position) >= Vector2.Distance(objToWatch.position, thirdEnviroment.position))
+        {
+            Transform temp = mainEnviroment;
+            mainEnviroment = thirdEnviroment;
+            thirdEnviroment = temp;
+            SetEnvs();
         }
 
-        float side = mainEnviroment.position.x - objToWatch.position.x;
+
+
+        /*float side = mainEnviroment.position.x - objToWatch.position.x;
         if (side >=0 && mainEnviroment.position.x < secondaryEnviroment.position.x)
             secondaryEnviroment.position = new Vector2(mainEnviroment.position.x - moveAmmount, mainEnviroment.position.y);
         else if (side < 0 && mainEnviroment.position.x > secondaryEnviroment.position.x)
-            secondaryEnviroment.position = new Vector2(mainEnviroment.position.x + moveAmmount, mainEnviroment.position.y);
-
-
+            secondaryEnviroment.position = new Vector2(mainEnviroment.position.x + moveAmmount, mainEnviroment.position.y);*/
     }
+
+
 
 }

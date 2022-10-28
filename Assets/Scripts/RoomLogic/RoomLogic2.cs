@@ -31,7 +31,7 @@ public class RoomLogic2 : AbstractRoomLogic
                                 SceneChangeManager.instance.ChangeScene("Scene1");
                             });
                         },
-                        () => { ShowTextUI.instance.ShowMainText("You feel an unexplainable urge to stay for a bit longer."); });
+                        () => { ShowTextUI.instance.ShowMainText("You prefer not to."); });
                 });
                 break;
             case "plumbing":
@@ -94,23 +94,87 @@ public class RoomLogic2 : AbstractRoomLogic
                 });
                 break;
             case "door_bathroom":
+                ShowTextUI.instance.ShowMainText("A pale wooden door stands in front of you.", () => {
+                    ShowTextUI.instance.ShowChoiceText("Enter?",
+                        () => {
+                            SceneChangeManager.instance.ChangeScene("Bathroom");
+                        },
+                        () => { ShowTextUI.instance.ShowMainText("Not today, door."); });
+                });
                 break;
             case "hall-window":
                 break;
             case "lights":
                 ShowTextUI.instance.ShowMainText("A trusty companion of any hallway. Seeing one makes you feel warm, even though it's all just an illusion.");
                 break;
-            case "idk8":
+            case "fuse2_on":
+                ShowTextUI.instance.ShowMainText("A fuse box that controls the lights in the area. ", () => {
+                    ShowTextUI.instance.ShowMainText("The electricity flows joyfully through its copper veins.", () => {
+                        ShowTextUI.instance.ShowChoiceText("Take out a fuse?",
+                        () => {
+                            if (IsWordSelected(spellingWords.bright) && !IsWordSelected(spellingWords.windows))
+                            {
+                                ShowTextUI.instance.ShowMainText("With a swift motion, take the fuse from the box.", () => {
+                                    SyncManager.instance.InvokeTurnOff("light2");
+                                    InventoryManager.instance.AddItemToInventory(inventoryItems.fuse);
+                                    SyncManager.instance.InvokeTurnOn("fuse2_off");
+                                    SyncManager.instance.InvokeTurnOff("fuse2_on");
+                                });
+                            }
+                            else
+                            {
+                                ShowTextUI.instance.ShowMainText("You’d rather not be in the dark.");
+                            }
+                        },
+                        () => { ShowTextUI.instance.ShowMainText("You decide it would be rude to just take the fuse from the box."); });
+                    });
+                });
+
                 break;
-            case "idk9":
+            case "fuse2_off":
+                if(IsItemSelected(inventoryItems.fuse))
+                {
+                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns green. Pleasant.");
+                    InventoryManager.instance.RemoveItemFromInventory(inventoryItems.fuse);
+                    SyncManager.instance.InvokeTurnOn("light2");
+                }
+                else
+                {
+                    ShowTextUI.instance.ShowMainText("A fuse box that controls the lights in the area.", () => {
+                        ShowTextUI.instance.ShowMainText("It's missing something. You feel sympathy for the poor thing.");
+                    });
+                }
                 break;
-            case "idk10":
+            case "fuse1_on":
+                ShowTextUI.instance.ShowMainText("A fuse box that controls the lights in the area.");
                 break;
-            case "idk11":
+            case "fuse1_off":
+                if (IsItemSelected(inventoryItems.fuse))
+                {
+                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns green. Pleasant.");
+                    InventoryManager.instance.RemoveItemFromInventory(inventoryItems.fuse);
+                    SyncManager.instance.InvokeTurnOn("light1");
+                    SyncManager.instance.InvokeTurnOff("ScareArea");
+                    SyncManager.instance.InvokeTurnOff("fuse1_off");
+                    SyncManager.instance.InvokeTurnOn("fuse1_on");
+                }
+                else
+                {
+                    ShowTextUI.instance.ShowMainText("A fuse box that controls the lights in the area.", () => {
+                        ShowTextUI.instance.ShowMainText("It's missing something. You feel sympathy for the poor thing.");
+                    });
+                }
                 break;
-            case "idk12":
+            case "door-double-glass":
+                ShowTextUI.instance.ShowMainText("The tall double doors stand in front of you. The air feels heavy in its presence.", () => {
+                ShowTextUI.instance.ShowChoiceText("Are you sure you want to continue?",
+                        () => { ShowTextUI.instance.ShowMainText("The tall double doors stand in front of you. The air feels heavy in its presence."); Debug.Log("end?"); },
+                        () => { ShowTextUI.instance.ShowMainText("You decide it might be a bad idea, for now."); }
+                    );
+                });
                 break;
-            case "idk13":
+            case "ScareArea":
+                //ShowTextUI.instance.ShowMainText("You’d rather not be in the dark.");
                 break;
 
         }
@@ -122,8 +186,28 @@ public class RoomLogic2 : AbstractRoomLogic
         switch (word)
         {
             case spellingWords.lonely:
+                if (IsWordSelected(spellingWords.toilets) || IsWordSelected(spellingWords.chromic_scarfs))
+                {
+                    SyncManager.instance.InvokeTurnOff("Window_light");
+                    SyncManager.instance.InvokeTurnOn("Window_dark");
+                }
+                else
+                {
+                    SyncManager.instance.InvokeTurnOff("Window_light");
+                    SyncManager.instance.InvokeTurnOff("Window_dark");
+                }
                 break;
             case spellingWords.bright:
+                if (IsWordSelected(spellingWords.toilets) || IsWordSelected(spellingWords.chromic_scarfs))
+                {
+                    SyncManager.instance.InvokeTurnOn("Window_light");
+                    SyncManager.instance.InvokeTurnOff("Window_dark");
+                }
+                else
+                {
+                    SyncManager.instance.InvokeTurnOff("Window_light");
+                    SyncManager.instance.InvokeTurnOff("Window_dark");
+                }
                 break;
             case spellingWords.fluffy:
                 break;
@@ -148,14 +232,44 @@ public class RoomLogic2 : AbstractRoomLogic
             case spellingWords.toilet:
                 break;
             case spellingWords.plumbing:
+                SyncManager.instance.InvokeTurnOn("plumbing");
+                SyncManager.instance.InvokeTurnOff("hydrant-1");
+                SyncManager.instance.InvokeTurnOff("hydrant-2");
+                SyncManager.instance.InvokeTurnOff("hydrant-3");
                 break;
             case spellingWords.wall_hydrants:
+                SyncManager.instance.InvokeTurnOff("plumbing");
+                SyncManager.instance.InvokeTurnOn("hydrant-1");
+                SyncManager.instance.InvokeTurnOn("hydrant-2");
+                SyncManager.instance.InvokeTurnOn("hydrant-3");
                 break;
             case spellingWords.windows:
+                SyncManager.instance.InvokeTurnOff("Window_light");
+                SyncManager.instance.InvokeTurnOff("Window_dark");
                 break;
             case spellingWords.toilets:
+                if (IsWordSelected(spellingWords.bright))
+                {
+                    SyncManager.instance.InvokeTurnOn("Window_light");
+                    SyncManager.instance.InvokeTurnOff("Window_dark");
+                }
+                else
+                {
+                    SyncManager.instance.InvokeTurnOff("Window_light");
+                    SyncManager.instance.InvokeTurnOn("Window_dark");
+                }
                 break;
             case spellingWords.chromic_scarfs:
+                if (IsWordSelected(spellingWords.bright))
+                {
+                    SyncManager.instance.InvokeTurnOn("Window_light");
+                    SyncManager.instance.InvokeTurnOff("Window_dark");
+                }
+                else
+                {
+                    SyncManager.instance.InvokeTurnOff("Window_light");
+                    SyncManager.instance.InvokeTurnOn("Window_dark");
+                }
                 break;
             case spellingWords.warm:
                 break;

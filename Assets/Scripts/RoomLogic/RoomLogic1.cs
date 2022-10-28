@@ -205,6 +205,8 @@ public class RoomLogic1 : AbstractRoomLogic
                                                         ShowTextUI.instance.ShowMainText("You lie down, and you find it difficult to sleep as something is beneath the bed-sheets. ", () =>
                                                         {
                                                             ShowTextUI.instance.ShowMainText("After a short search, you find a tiny battery cell.");
+                                                            InventoryManager.instance.AddItemToInventory(inventoryItems.battery);
+                                                            batteryTook = true;
                                                         });
                                                     });
                                                 }

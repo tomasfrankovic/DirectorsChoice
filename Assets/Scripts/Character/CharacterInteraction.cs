@@ -10,6 +10,10 @@ public class CharacterInteraction : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.CompareTag("Scare"))
+        {
+            ShowTextUI.instance.ShowMainText("You’d rather not be in the dark.");
+        }
         if(collision.CompareTag("Interactible"))
         {
             if (OnboardingManager.onboardingIndex == 0 && OnboardingManager.instance != null && collision.name == "door_tuto")

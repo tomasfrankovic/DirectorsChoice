@@ -50,4 +50,16 @@ public abstract class SyncObj : MonoBehaviour
             grid.GetComponent<SyncController>().LoadAllSyncedObjs();
 #endif
     }
+
+    [ContextMenu("OnEvent")]
+    public void OnEvent()
+    {
+        turnOnEvent?.Invoke();
+    }
+
+    [ContextMenu("OffEvent")]
+    public void OffEvent()
+    {
+        turnOffEvent?.Invoke();
+    }
 }

@@ -39,6 +39,8 @@ public class BookManager : MonoBehaviour
             return;
         chaptersUnlocked = chapterNum;
         ChaptersManagerUI.instance.Init();
+
+        BookNotif.instance.Show();
     }
 
     public void ChangeIncrement(int increment)
