@@ -33,6 +33,14 @@ public class BookManager : MonoBehaviour
         SelectChapter(1);
     }
 
+    public void UnlockNewChapter(int chapterNum)
+    {
+        if (chapterNum <= chaptersUnlocked)
+            return;
+        chaptersUnlocked = chapterNum;
+        ChaptersManagerUI.instance.Init();
+    }
+
     public void ChangeIncrement(int increment)
     {
         gameIncrement = increment;

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
-using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class DragWindow : MonoBehaviour, IDragHandler, IDeselectHandler, IPointerUpHandler, IPointerDownHandler {

@@ -10,6 +10,7 @@ public class RoomLogic1 : AbstractRoomLogic
     bool telephoneOut;
     bool telephoneDismantle;
     bool keyTook;
+    bool batteryTook;
 
     public enum doorState
     {
@@ -19,8 +20,10 @@ public class RoomLogic1 : AbstractRoomLogic
     }
 
     doorState actualDoorState;
-    public override void InteractionHappened(string interactionID)
+
+    public override void InteractionHappened(string interactionID, bool important = true)
     {
+        base.InteractionHappened(interactionID, important);
         switch(interactionID)
         {
             case "Window_dark":
@@ -99,7 +102,12 @@ public class RoomLogic1 : AbstractRoomLogic
                         if(OnboardingManager.instance)
                             OnboardingManager.instance.DoorInteracted();
                         ShowTextUI.instance.ShowMainText("You try twisting the handle… but the door refuses to open.", () => {
-                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => { actualDoorState = doorState.locked; /*OnboardingManager.instance.ShowSpace(true);*/BookManager.instance.ChangeIncrement(1); });
+                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => { 
+                                actualDoorState = doorState.locked; 
+                                //OnboardingManager.instance.ShowSpace(true);
+                                BookManager.instance.ChangeIncrement(1);
+                                TimersManager.instance.AddTimer(15f, () => { BookManager.instance.ChangeIncrement(2); }, true);
+                                });
                         });
                         break;
                     case doorState.locked:
@@ -171,13 +179,7 @@ public class RoomLogic1 : AbstractRoomLogic
 
                 break;
             case "bed":
-                if (IsWordSelected(spellingWords.lonely) || telephoneOut)
-                {
-                    ShowTextUI.instance.ShowChoiceText("Go to sleep?",
-                                    () => { CutsceneUI.instance.ShowCutScene(.5f, () => { ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind. You decide to get back up."); }); },
-                                    () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
-                }
-                else
+                if(IsWordSelected(spellingWords.bright) && !telephoneOut)
                 {
                     ShowTextUI.instance.ShowMainText("While looking longingly at the bed, you notice a slight reflection of the starry skies on something under the bed.", () => {
                         ShowTextUI.instance.ShowChoiceText("Reach under the bed?",
@@ -185,11 +187,42 @@ public class RoomLogic1 : AbstractRoomLogic
                                         telephoneOut = true;
                                         CutsceneUI.instance.ShowCutScene(.5f, () => {
                                             SyncManager.instance.InvokeTurnOn("rotary-telephone");
-                                            ShowTextUI.instance.ShowMainText("You reach into the barely lit darkness until you take a firm grasp of the thing beneath the bed."); 
-                                        }); 
+                                            ShowTextUI.instance.ShowMainText("You reach into the barely lit darkness until you take a firm grasp of the thing beneath the bed.");
+                                        });
                                     },
                                     () => { ShowTextUI.instance.ShowMainText("Your heart sinks while your imagination runs wild on all the possible denizens of the under-bed."); });
                     });
+                }
+                else if(IsWordSelected(spellingWords.sleepy))
+                {
+                    ShowTextUI.instance.ShowChoiceText("Go to sleep?",
+                                    () => { CutsceneUI.instance.ShowCutScene(.5f, 
+                                        () => { 
+                                                if (!batteryTook)
+                                                {
+                                                    CutsceneUI.instance.ShowCutScene(2f, () =>
+                                                    {
+                                                        ShowTextUI.instance.ShowMainText("You lie down, and you find it difficult to sleep as something is beneath the bed-sheets. ", () =>
+                                                        {
+                                                            ShowTextUI.instance.ShowMainText("After a short search, you find a tiny battery cell.");
+                                                        });
+                                                    });
+                                                }
+                                                else
+                                                {
+                                                    ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind.  ", () => {
+                                                        ShowTextUI.instance.ShowMainText("You decide to get back up.");
+                                                    });
+                                                }
+                                            });
+                                        },
+                                        () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
+                }
+                else
+                {
+                    ShowTextUI.instance.ShowChoiceText("Go to sleep?",
+                                    () => { CutsceneUI.instance.ShowCutScene(.5f, () => { ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind. You decide to get back up."); }); },
+                                    () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
                 }
                 break;
             case "tv":
@@ -211,17 +244,18 @@ public class RoomLogic1 : AbstractRoomLogic
 
     void LeaveRoom()
     {
-        Debug.Log("Leave room i guess");
+        SceneChangeManager.instance.ChangeScene("Hallway");
     }
 
     public override void Init()
     {
         for (int i = 0; i < SpellingWordsManager.instance.selectedWordsList.Count; i++)
-            WordChanged(SpellingWordsManager.instance.selectedWordsList[i]);
+            WordChanged(SpellingWordsManager.instance.selectedWordsList[i], false);
     }
 
-    public override void WordChanged(spellingWords word)
+    public override void WordChanged(spellingWords word, bool important = true)
     {
+        base.WordChanged(word, important);
         switch (word)
         {
             case spellingWords.lonely:
@@ -247,7 +281,7 @@ public class RoomLogic1 : AbstractRoomLogic
                 break;
             case spellingWords.metal_safes:
                 break;
-            case spellingWords.dog_food:
+            case spellingWords.soap_bars:
                 break;
             case spellingWords.rotary_telephones:
                 break;
@@ -269,10 +303,5 @@ public class RoomLogic1 : AbstractRoomLogic
             default:
                 break;
         }
-    }
-
-    public void ShowSomeText(string text)
-    {
-        Debug.Log("Show: " + text);
     }
 }

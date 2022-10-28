@@ -21,11 +21,16 @@ public class ChaptersButton : MonoBehaviour
 
     public void OnSelect()
     {
+        SelectAnim();
+        BookManager.instance.SelectChapter(id + 1);
+    }
+
+    public void SelectAnim()
+    {
         LeanTween.cancel(buttonSelectImg);
         buttonSelectImg.SetActive(true);
         text.color = ChaptersManagerUI.instance.selectedColor;
         button.interactable = false;
-        BookManager.instance.SelectChapter(id + 1);
         buttonSelectImg.LeanScaleY(1f, .7f).setEaseOutExpo();
         ChaptersManagerUI.instance.DeselectOthers(id);
     }

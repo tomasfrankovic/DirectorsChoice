@@ -1,10 +1,16 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class SoundManager : MonoBehaviour
 {
+    [Serializable]
+    public class ClipsDict : UnitySerializedDictionary<string, AudioClip> { }
+
+    public ClipsDict musicDict;
+    public ClipsDict soundDict;
+
     public static SoundManager instance;
     private void Awake()
     {
@@ -17,17 +23,36 @@ public class SoundManager : MonoBehaviour
     }
 
     public AudioClip step;
-    AudioSource audioSource;
+    public AudioSource audioSourceMusic;
+    public AudioSource audioSourceSounds;
+    public AudioSource audioSourceSteps;
     public Vector2 pitchRandom = Vector2.one;
-
-    void Start()
-    {
-        audioSource = GetComponent<AudioSource>();
-    }
 
     public void PlayStep()
     {
-        audioSource.pitch = Random.Range(pitchRandom.x, pitchRandom.y);
-        audioSource.PlayOneShot(step);
+        audioSourceSteps.pitch = UnityEngine.Random.Range(pitchRandom.x, pitchRandom.y);
+        audioSourceSteps.PlayOneShot(soundDict["footstep"]);
+    }
+
+    public void PlaySound(string clipName)
+    {
+        if(!soundDict.ContainsKey(clipName))
+        {
+            Debug.LogWarning("Sounds dict doesn't contain " + clipName);
+            return;
+        }
+        audioSourceSounds.PlayOneShot(soundDict[clipName]);
+    }
+
+    public void PlayMusic(string clipName)
+    {
+
+        if (!musicDict.ContainsKey(clipName))
+        {
+            Debug.LogWarning("Music dict doesn't contain " + clipName);
+            return;
+        }
+        audioSourceMusic.clip = musicDict[clipName];
+        audioSourceMusic.Play();
     }
 }

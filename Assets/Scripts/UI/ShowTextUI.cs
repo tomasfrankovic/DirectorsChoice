@@ -47,8 +47,17 @@ public class ShowTextUI : MonoBehaviour
         thisRect.gameObject.SetActive(false);
     }
 
-    public void ShowChoiceText(string text, Action yesCallback, Action noCallback)
+    bool saveCallback;
+    public void ShowChoiceText(string text, Action yesCallback, Action noCallback, bool saveCallback = true)
     {
+        if (AbstractRoomLogic.instance.simulationRunning)
+        {
+            if (AbstractRoomLogic.instance.lastInteraction.answer)
+                yesCallback?.Invoke();
+            return;
+        }
+
+        this.saveCallback = saveCallback;
         this.yesCallback = yesCallback;
         this.noCallback = noCallback;
         RunText(choicesText, text);
@@ -56,6 +65,11 @@ public class ShowTextUI : MonoBehaviour
 
     public void ShowMainText(string text, Action onFinish = null)
     {
+        if (AbstractRoomLogic.instance.simulationRunning) 
+        {
+            onFinish?.Invoke();
+            return;
+        }
         this.onFinish = onFinish;
         RunText(mainText, text);
     }
@@ -139,6 +153,8 @@ public class ShowTextUI : MonoBehaviour
 
     public void ClickYes()
     {
+        if (saveCallback)
+            AbstractRoomLogic.instance.lastInteraction.answer = true;
         ClearText();
         yesCallback?.Invoke();
     }

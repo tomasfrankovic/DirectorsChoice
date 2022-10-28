@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "964516488409",
+    "firebase_url": "https://writerschoice-cc15d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "writerschoice-cc15d",
+    "storage_bucket": "writerschoice-cc15d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964516488409:android:6bdf45aa7c8115638d4ac8",
+        "android_client_info": {
+          "package_name": "com.Halusky.WritersChoice"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "964516488409-4c8ia9dqimpeucqisouqgemj5kdqg93f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADZ5eeYZvBjiltk4NMEJi3--Fmd6z3C5s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "964516488409-4c8ia9dqimpeucqisouqgemj5kdqg93f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

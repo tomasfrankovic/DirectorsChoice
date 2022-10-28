@@ -46,6 +46,9 @@ public class InfiniteEnviroment : MonoBehaviour
 
     void UpdatePositions()
     {
+        if (objToWatch == null)
+            objToWatch = PlayerMovement.instance.transform;
+
         if(Vector2.Distance(objToWatch.position, mainEnviroment.position) >= Vector2.Distance(objToWatch.position, secondaryEnviroment.position))
         {
             Transform temp = mainEnviroment;

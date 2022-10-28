@@ -44,6 +44,10 @@ public abstract class SyncObj : MonoBehaviour
             gameObject.AddComponent<BoxCollider2D>().isTrigger = true;
 
         gameObject.tag = "Interactible";
+
+        GameObject grid = GameObject.Find("Grid");
+        if (grid)
+            grid.GetComponent<SyncController>().LoadAllSyncedObjs();
 #endif
     }
 }

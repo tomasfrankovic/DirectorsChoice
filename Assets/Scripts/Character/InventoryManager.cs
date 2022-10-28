@@ -10,6 +10,8 @@ public enum inventoryItems
     valve,
     screwdriver,
     key,
+    battery,
+    hall_key,
 }
 
 public class InventoryManager : MonoBehaviour
@@ -52,7 +54,7 @@ public class InventoryManager : MonoBehaviour
 
     public void AddItemToInventory(inventoryItems item)
     {
-        if (storedItems.Contains(item)) return;
+        if (storedItems.Contains(item) || AbstractRoomLogic.instance.simulationRunning) return;
 
         storedItems.Add(item);
 
@@ -61,6 +63,8 @@ public class InventoryManager : MonoBehaviour
 
     public void RemoveItemFromInventory(inventoryItems item)
     {
+        if (AbstractRoomLogic.instance.simulationRunning) return;
+
         if (storedItems.Contains(item))
             storedItems.Remove(item);
         else

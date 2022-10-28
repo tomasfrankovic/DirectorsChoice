@@ -34,6 +34,11 @@ public class CutsceneUI : MonoBehaviour
 
     public void ShowCutScene(float delay, Action middleCallback)
     {
+        if (AbstractRoomLogic.instance.simulationRunning)
+        {
+            middleCallback?.Invoke();
+            return;
+        }
         isCutscene = true;
         LeanTween.alphaCanvas(canvasGroup, 1f, fadeTime).setEase(fadeEase).setOnComplete(()=> {
             LeanTween.alphaCanvas(canvasGroup, 0f, unfadeTime).setDelay(delay).setEase(unfadeEase).setOnStart(()=> { middleCallback?.Invoke(); }).setOnComplete(() => {

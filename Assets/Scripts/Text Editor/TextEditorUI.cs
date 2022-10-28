@@ -31,6 +31,9 @@ public class TextEditorUI : MonoBehaviour
 
     public void HomeScreen()
     {
+        if (OnboardingManager.instance == null || OnboardingManager.onboardingIndex == 0)
+            return;
+
         BookManager.instance.DrawIntroduction();
         ChaptersManagerUI.instance.DeselectOthers(-1);
     }
@@ -38,6 +41,7 @@ public class TextEditorUI : MonoBehaviour
 
     public void InitText(ChapterSO chapter, string page, bool reset = false)
     {
+        addedTextGO.SetActive(false);
         BookManager bookManager = BookManager.instance;
         chapterBackButton.gameObject.SetActive(page != "");
         chapterBackButton.text = $"<  {bookManager.GetChapterTitle(chapter)}";
@@ -45,7 +49,6 @@ public class TextEditorUI : MonoBehaviour
         chapterTitle.text = bookManager.GetChapterTitle(chapter);
         chapterText.text = bookManager.GetChapterText(chapter);
 
-        addedTextGO.SetActive(false);
         if(reset)
             contentReset.anchoredPosition = new Vector2(contentReset.anchoredPosition.x, 0f);
     }

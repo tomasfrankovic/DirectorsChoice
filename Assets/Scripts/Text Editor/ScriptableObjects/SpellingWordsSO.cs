@@ -16,11 +16,18 @@ public enum spellingWords
     only,
     wooden,
     metal_safes,
-    dog_food,
+    soap_bars,
     rotary_telephones,
     sofa,
     pile_of_rocks,
     toilet,
+    plumbing,
+    wall_hydrants,
+    windows,
+    toilets,
+    chromic_scarfs,
+    warm,
+    cold,
 }
 
 [CreateAssetMenu(fileName = "SpellingWordsSO", menuName = "ScriptableObjects/SpellingWordsSO", order = 1)]

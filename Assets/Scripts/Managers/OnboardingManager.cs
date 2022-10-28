@@ -105,6 +105,11 @@ public class OnboardingManager : MonoBehaviour
     public void NtbInteracted()
     {
         onboardingIndex++;
-        //ShowSpace(false);
+
+        Wait(1f, () =>
+        {
+            InventoryManager.instance.gameObject.SetActive(true);
+
+        });
     }
 }

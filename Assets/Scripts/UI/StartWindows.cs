@@ -33,7 +33,9 @@ public class StartWindows : MonoBehaviour
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
         canvasGroup.alpha = 0f;
-        Show();
+
+        if(OnboardingManager.instance != null)
+            Show();
     }
 
     public void ShowDesktop()
