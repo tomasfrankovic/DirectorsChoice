@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f0b3a1e4c0475a45bd0dbd8398e49c2, type: 3}
   m_Name: 2.ChapterSO
   m_EditorClassIdentifier: 
-  chapterName: Now The Fun Begins
+  chapterName: Synapse
   paragraphs:
   - paragraphEnum: 0
     gameIncrement: 0

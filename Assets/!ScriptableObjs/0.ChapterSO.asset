@@ -16,4 +16,4 @@ MonoBehaviour:
   paragraphs:
   - paragraphEnum: 0
     gameIncrement: 0
-    paragraphText: Hello there, start by choosing chapter to edit.
+    paragraphText: Choose a chapter.
