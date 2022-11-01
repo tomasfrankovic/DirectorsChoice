@@ -105,7 +105,11 @@ public class RoomLogic2 : AbstractRoomLogic
                         () => { ShowTextUI.instance.ShowMainText("Not today, door."); });
                 });
                 break;
-            case "hall-window":
+            case "Window_dark":
+                ShowTextUI.instance.ShowMainText("Seeing the outside fills you with unease.");
+                break;
+            case "Window_light":
+                ShowTextUI.instance.ShowMainText("The stars seem especially pleased today.");
                 break;
             case "lights":
                 ShowTextUI.instance.ShowMainText("A trusty companion of any hallway. Seeing one makes you feel warm, even though it's all just an illusion.");
@@ -140,6 +144,7 @@ public class RoomLogic2 : AbstractRoomLogic
                     ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns green. Pleasant.");
                     InventoryManager.instance.RemoveItemFromInventory(inventoryItems.fuse);
                     SyncManager.instance.InvokeTurnOn("light2");
+                    SyncManager.instance.InvokeTurnOn("fuse2_on");
                 }
                 else
                 {

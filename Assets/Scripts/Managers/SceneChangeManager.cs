@@ -21,7 +21,8 @@ public class SceneChangeManager : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
-        StartTransition(sceneName);
+        if(!AbstractRoomLogic.instance.simulationRunning)
+            StartTransition(sceneName);
     }
 
     public void StartTransition(string sceneName)
