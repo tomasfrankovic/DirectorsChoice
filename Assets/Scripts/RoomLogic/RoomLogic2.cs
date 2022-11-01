@@ -15,6 +15,9 @@ public class RoomLogic2 : AbstractRoomLogic
             WordChanged(SpellingWordsManager.instance.selectedWordsList[i]);
 
         BookManager.instance.UnlockNewChapter(2);
+
+        if (PlayerMovement.hasFlashlight)
+            SyncManager.instance.InvokeTurnOff("ScareArea");
     }
 
     public override void InteractionHappened(string interactionID, bool important = true)

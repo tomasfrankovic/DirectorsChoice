@@ -30,7 +30,8 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
 		flashlight.SetActive(hasFlashlight);
-		SyncManager.instance.InvokeTurnOff("ScareArea");
+		if(hasFlashlight)
+			SyncManager.instance.InvokeTurnOff("ScareArea");
 	}
 
 	public void SetFlashlight()

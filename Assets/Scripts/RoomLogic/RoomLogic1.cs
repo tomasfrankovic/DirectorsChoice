@@ -205,6 +205,7 @@ public class RoomLogic1 : AbstractRoomLogic
                                                         ShowTextUI.instance.ShowMainText("You lie down, and you find it difficult to sleep as something is beneath the bed-sheets. ", () =>
                                                         {
                                                             ShowTextUI.instance.ShowMainText("After a short search, you find a tiny battery cell.");
+
                                                             InventoryManager.instance.AddItemToInventory(inventoryItems.battery);
                                                             batteryTook = true;
                                                         });
@@ -223,7 +224,7 @@ public class RoomLogic1 : AbstractRoomLogic
                 else
                 {
                     ShowTextUI.instance.ShowChoiceText("Go to sleep?",
-                                    () => { CutsceneUI.instance.ShowCutScene(.5f, () => { ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind. You decide to get back up."); }); },
+                                    () => { ShowTextUI.instance.ShowMainText("A comfortable-looking bed. However, you don’t feel very sleepy."); },
                                     () => { ShowTextUI.instance.ShowMainText("You walk away, rejecting the tempting offer."); });
                 }
                 break;

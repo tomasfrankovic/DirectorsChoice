@@ -16,13 +16,12 @@ MonoBehaviour:
   paragraphs:
   - paragraphEnum: 0
     gameIncrement: 0
-    paragraphText: The wary fox enters the maze. Pale Luna smiles
+    paragraphText: The wary fox enters the maze. Pale Luna smiles.\n
   - paragraphEnum: 0
     gameIncrement: 0
-    paragraphText: The {cold} hallways of Komplex 74 were one of the more recent
+    paragraphText: \n\tThe {cold} hallways of Komplex 74 were one of the more recent
       miracles invented by The Creators. The walls are reinforced to be especially
-      durable in the case of the appearance of a 3rd-degree EYE (Entropy Yielding
-      Event) in order to prevent entities from entering or leaving the premises.
-      A notable feature of these hallways is the network of {plumbing} that litter
-      the hallway. Because of the faculty density, no {windows} were selected to
-      be added to hallways.
+      durable to prevent entities from entering or leaving the premises in the case
+      of a 3rd-degree E.Y.E. event. A notable feature of these hallways is the network
+      of {plumbing} that litter the hallway. Because of the faculty density, no {windows}
+      were selected to be added to hallways.

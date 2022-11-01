@@ -52,8 +52,9 @@ public class OnboardingManager : MonoBehaviour
 
     public async void Wait(float time, Action callback)
     {
-        await Task.Delay(Mathf.RoundToInt(time * 1000f));
-        callback?.Invoke();
+        TimersManager.instance.AddTimer(time, callback, false);
+        //await Task.Delay(Mathf.RoundToInt(time * 1000f));
+        //callback?.Invoke();
     }
 
     public void MoveIn(RectTransform rect)

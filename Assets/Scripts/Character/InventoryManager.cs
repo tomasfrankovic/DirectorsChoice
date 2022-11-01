@@ -59,6 +59,9 @@ public class InventoryManager : MonoBehaviour
         if (storedItems.Contains(item) || AbstractRoomLogic.instance.simulationRunning) return;
 
         storedItems.Add(item);
+        Debug.Log("idtem: " + item);
+
+        FlashlightCheck();
 
         UpdateUI();
     }   
@@ -67,6 +70,7 @@ public class InventoryManager : MonoBehaviour
     {
         if(storedItems.Contains(inventoryItems.flashlight) && storedItems.Contains(inventoryItems.battery))
         {
+            Debug.Log("Turn off battery");
             RemoveItemFromInventory(inventoryItems.flashlight);
             RemoveItemFromInventory(inventoryItems.battery);
             PlayerMovement.instance.SetFlashlight();
