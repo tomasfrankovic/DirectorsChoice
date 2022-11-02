@@ -102,7 +102,8 @@ public class RoomLogic1 : AbstractRoomLogic
                         if(OnboardingManager.instance)
                             OnboardingManager.instance.DoorInteracted();
                         ShowTextUI.instance.ShowMainText("You try twisting the handle… but the door refuses to open.", () => {
-                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => { 
+                            SoundManager.instance.PlayMusic("music");
+                            ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => {
                                 actualDoorState = doorState.locked; 
                                 //OnboardingManager.instance.ShowSpace(true);
                                 BookManager.instance.ChangeIncrement(1);

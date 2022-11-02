@@ -115,7 +115,7 @@ public class ShowTextUI : MonoBehaviour
     public void RunText(TextMeshProUGUI textComponent, string text)
     {
         LeanTween.cancel(thisRect);
-        thisRect.LeanSize(new Vector2(980f, 235f), 1f).setEaseOutBack();
+        thisRect.LeanSize(new Vector2(980f, 235f), 0.5f).setEaseOutCubic();
         thisRect.gameObject.SetActive(true);
         StopAllCoroutines();
         choicesText.gameObject.SetActive(textComponent == choicesText);
@@ -144,7 +144,7 @@ public class ShowTextUI : MonoBehaviour
     {
         actualState = textShowState.none;
         LeanTween.cancel(thisRect);
-        thisRect.LeanSize(new Vector2(0f, 235f), .5f).setEaseOutExpo().setOnComplete(()=> {
+        thisRect.LeanSize(new Vector2(0f, 235f), .5f).setEaseInCubic().setOnComplete(()=> {
             thisRect.gameObject.SetActive(false);
             mainText.text = "";            
             choicesText.gameObject.SetActive(false);

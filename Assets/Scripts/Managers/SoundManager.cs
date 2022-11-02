@@ -26,6 +26,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSourceMusic;
     public AudioSource audioSourceSounds;
     public AudioSource audioSourceSteps;
+    public AudioSource audioSourceLaptop;
     public Vector2 pitchRandom = Vector2.one;
 
     public void PlayStep()
@@ -42,6 +43,22 @@ public class SoundManager : MonoBehaviour
             return;
         }
         audioSourceSounds.PlayOneShot(soundDict[clipName]);
+    }
+
+    public void PlayLaptopAmbience(string clipName)
+    {
+        if (!musicDict.ContainsKey(clipName))
+        {
+            Debug.LogWarning("Sounds dict doesn't contain " + clipName);
+            return;
+        }
+        audioSourceLaptop.clip = musicDict[clipName];
+        audioSourceLaptop.Play();
+    }
+
+    public void StopLaptopAmbience()
+    {
+        audioSourceLaptop.Stop();
     }
 
     public void PlayMusic(string clipName)

@@ -42,10 +42,8 @@ public class OnboardingManager : MonoBehaviour
         {
             StartWindows.instance.Hide();
             InventoryManager.instance.gameObject.SetActive(false);
-
-            Wait(1f, () =>
-            {
-            ShowTextUI.instance.ShowMainText("You feel parched after hours of tenuous work. Maybe you should get some water from the kitchen.", () => { MoveIn(arrows); });
+            CutsceneUI.instance.ShowCutScene(2f, () => {
+                ShowTextUI.instance.ShowMainText("You feel parched after hours of tenuous work. Maybe you should get some water from the kitchen.", () => { MoveIn(arrows); });
             });
         });
     }
@@ -101,7 +99,6 @@ public class OnboardingManager : MonoBehaviour
         onboardingIndex++;
         MoveOut(arrows);
         ShowAction(false);
-        SoundManager.instance.PlayMusic("music");
     }
 
     public void NtbInteracted()

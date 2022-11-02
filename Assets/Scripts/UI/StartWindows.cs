@@ -24,6 +24,7 @@ public class StartWindows : MonoBehaviour
     public bool animLock;
     public bool showedUI = false;
 
+    public GameObject windowGroup;
     public GameObject desktop;
     public GameObject word;
     public GameObject win;
@@ -126,10 +127,12 @@ public class StartWindows : MonoBehaviour
     public void ShowScreen()
     {
         CancelTween();
-
+        SoundManager.instance.PlaySound("laptop_start");
+        SoundManager.instance.PlayLaptopAmbience("laptop_normal");
         //canvasGroup.LeanAlpha(1f, 1f).setDelay(.2f).setEaseOutCirc().setOnComplete(() => {
         whiteBacklight.alpha = 1f;
         canvasGroup.alpha = 1f;
+        windowGroup.LeanScaleY(1, 0.2f).setEaseInCubic();
         whiteBacklight.LeanAlpha(0f, 1f).setDelay(.2f).setEaseOutCirc().setOnComplete(() => {
             canvasGroup.interactable = true;
             canvasGroup.blocksRaycasts = true;
@@ -141,16 +144,19 @@ public class StartWindows : MonoBehaviour
     public void HideScreen()
     {
         CancelTween();
+        SoundManager.instance.PlaySound("laptop_end");
+        SoundManager.instance.StopLaptopAmbience();
 
         animLock = true;
         canvasGroup.interactable = false;
         canvasGroup.blocksRaycasts = false;
 
-        canvasGroup.LeanAlpha(0f, .5f).setOnComplete(() => {
+        windowGroup.LeanScaleY(0,0.2f).setEaseOutCubic().setOnComplete(() => {
 
             anim.Play("ntb_close");
             canvasGroup.alpha = 0f;
         });
+
         blockImg.LeanAlpha(0f, .5f).setEaseOutCirc();
     }
 
