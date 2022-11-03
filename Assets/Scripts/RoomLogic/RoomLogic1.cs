@@ -33,7 +33,7 @@ public class RoomLogic1 : AbstractRoomLogic
                 ShowTextUI.instance.ShowMainText("The stars seem especially pleased today.");
                 break;
             case "window-blind":
-                ShowTextUI.instance.ShowMainText("You can hear a slight hum of the world on the other side of the window.");
+                ShowTextUI.instance.ShowMainText("You can hear a slight hum of the world on the other side.");
                 break;
             case "toilet":
                 if (valve)
@@ -58,15 +58,19 @@ public class RoomLogic1 : AbstractRoomLogic
                 if(!screwdriver)
                 {
                     ShowTextUI.instance.ShowMainText("A familiar-looking bookshelf, full of useful things.", () => {
-                        ShowTextUI.instance.ShowMainText("As you dart over the things tastefully put on the shelves, you notice a screwdriver piques your interest.", () => {
-                            ShowTextUI.instance.ShowChoiceText("You feel a strange attraction to it, would you like to take it?",
-                                () => {
-                                    ShowTextUI.instance.ShowMainText("As you hold the screwdriver in your tiny hands, a short burst of confidence fills your heart.", () => {
-                                        InventoryManager.instance.AddItemToInventory(inventoryItems.screwdriver);
-                                        screwdriver = true;
-                                    });
-                                },
-                                () => { ShowTextUI.instance.ShowMainText("You decide not to accept the company of the screwdriver."); });
+                        ShowTextUI.instance.ShowMainText("As you dart over the things tastefully put on the shelves… ", () => {
+                            ShowTextUI.instance.ShowMainText("… you notice a screwdriver that piques your interest!", () => {
+                                ShowTextUI.instance.ShowChoiceText("You feel a strange attraction to it, would you like to take it?",
+                                    () => {
+                                        ShowTextUI.instance.ShowMainText("As you hold the screwdriver in your tiny hands, a short burst of confidence fills your heart.", () => {
+                                            InventoryManager.instance.AddItemToInventory(inventoryItems.screwdriver);
+                                            screwdriver = true;
+                                        });
+                                    },
+                                    () => {
+                                        ShowTextUI.instance.ShowMainText("You decide not to accept the company of the screwdriver.");
+                                 });
+                            });
                         });
                     });
                 }
@@ -214,7 +218,7 @@ public class RoomLogic1 : AbstractRoomLogic
                                                 }
                                                 else
                                                 {
-                                                    ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind.  ", () => {
+                                                    ShowTextUI.instance.ShowMainText("You lie down, in an attempt to fall asleep. However, very unpleasant memories flood your mind.", () => {
                                                         ShowTextUI.instance.ShowMainText("You decide to get back up.");
                                                     });
                                                 }

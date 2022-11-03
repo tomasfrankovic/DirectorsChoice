@@ -35,7 +35,7 @@ public class DragWindow : MonoBehaviour, IDragHandler, IDeselectHandler, IPointe
     public Color defaultColor = Color.white;
     public Color tint = Color.blue;
 
-    public string fileText = "secret.txt";
+    public string fileText = "writers_choice.txt";
 
     public UnityEvent onDoubleClick;
 

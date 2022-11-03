@@ -21,7 +21,7 @@ public class RoomLogic3 : AbstractRoomLogic
         switch (interaction)
         {
             case "radiator":
-                ShowTextUI.instance.ShowMainText("The radiator hums ominously, as you realize how thin the metal imprisoning the hot, high-pressure steam is.");
+                ShowTextUI.instance.ShowMainText("The radiator hums ominously, as hot high-pressure gas circulates its thin metal walls.");
                 break;
             case "sink":
                 if(cabinetLocked)
@@ -39,12 +39,16 @@ public class RoomLogic3 : AbstractRoomLogic
                     }
                     else
                     {
-                        ShowTextUI.instance.ShowMainText("A firm cabinet stands in front of you. Opening its doors, you challenge its imposing nature. However, the cabinet is victorious and its doors remain locked.");
+                        ShowTextUI.instance.ShowMainText("A firm cabinet stands in front of you.", () =>{
+                            ShowTextUI.instance.ShowMainText("You try to open its doors. However, the door is locked.", () => {
+                                ShowTextUI.instance.ShowMainText("The cabinet remains victorious.");
+                            });
+                        });
                     }
                 }
                 else
                 {
-                    ShowTextUI.instance.ShowMainText("You dart over the content of the cabinet, however, you don’t find anything interesting.");
+                    ShowTextUI.instance.ShowMainText("You dart over the content of the cabinet once more … However, you don’t find anything of interest.");
                 }
                 break;
             case "light":
@@ -57,7 +61,9 @@ public class RoomLogic3 : AbstractRoomLogic
                 {
                     ShowTextUI.instance.ShowMainText("A regular, run-of-the-mill bathtub, you peek inside of it …", () => {
                         ShowTextUI.instance.ShowMainText("… you have a bad feeling about this.", () => {
-                            ShowTextUI.instance.ShowMainText("To your surprise, there’s a handy little flashlight inside.");
+                            ShowTextUI.instance.ShowMainText("To your surprise, there’s a handy little flashlight inside.", () => { 
+                                ShowTextUI.instance.ShowMainText("Holding it in your hands, you realize it's lacking a battery.");
+                            });
                             InventoryManager.instance.AddItemToInventory(inventoryItems.flashlight);
                             flashlightTook = true;
                         });
@@ -74,7 +80,7 @@ public class RoomLogic3 : AbstractRoomLogic
                                     keyTook = true;
                                     InventoryManager.instance.AddItemToInventory(inventoryItems.hall_key);
                                 },
-                                () => { ShowTextUI.instance.ShowMainText("You prefer not to.");
+                                () => { ShowTextUI.instance.ShowMainText("You don’t feel the need to wash your paws.");
                             });
                         });
                     });

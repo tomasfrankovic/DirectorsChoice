@@ -2274,7 +2274,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <mark=#04d40f70>Added text
+  m_text: <mark=#F4FF0070>Added text
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46632587f1c1c8d41bf6b51332865a3d, type: 2}
   m_sharedMaterial: {fileID: 1991580238941131767, guid: 46632587f1c1c8d41bf6b51332865a3d,
@@ -2546,7 +2546,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- open document and start editing'
+  m_text: '- Open the document and start editing.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46632587f1c1c8d41bf6b51332865a3d, type: 2}
   m_sharedMaterial: {fileID: 1991580238941131767, guid: 46632587f1c1c8d41bf6b51332865a3d,
@@ -3837,7 +3837,7 @@ MonoBehaviour:
   tmp: {fileID: 8667146851682903393}
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   tint: {r: 0.22352941, g: 0.54509807, b: 1, a: 1}
-  fileText: secret.doc
+  fileText: writers_choice.doc
   onDoubleClick:
     m_PersistentCalls:
       m_Calls:
@@ -6821,8 +6821,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4289581519
-  m_fontColor: {r: 0.81321967, g: 0.8207547, b: 0.6775098, a: 1}
+    rgba: 4292264405
+  m_fontColor: {r: 0.8352942, g: 0.7568628, b: 0.83921576, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -7741,8 +7741,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 7.600006}
-  m_SizeDelta: {x: 196.2, y: 39.2}
+  m_AnchoredPosition: {x: 0, y: 2.0100098}
+  m_SizeDelta: {x: 232.6381, y: 39.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3651940817657823022
 CanvasRenderer:
@@ -7772,7 +7772,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: secret.doc
+  m_text: writers_choice.doc
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 46632587f1c1c8d41bf6b51332865a3d, type: 2}
   m_sharedMaterial: {fileID: 1991580238941131767, guid: 46632587f1c1c8d41bf6b51332865a3d,

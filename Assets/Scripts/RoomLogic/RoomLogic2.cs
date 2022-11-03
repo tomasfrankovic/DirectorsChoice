@@ -27,14 +27,12 @@ public class RoomLogic2 : AbstractRoomLogic
         switch (interactionID)
         {
             case "door_room":
-                ShowTextUI.instance.ShowMainText("The warm wooden door welcomes you.", () => {
+                ShowTextUI.instance.ShowMainText("A door that looks like the front door, however something feels off.", () => {
                     ShowTextUI.instance.ShowChoiceText("Enter the door?",
                         () => {
-                            ShowTextUI.instance.ShowMainText("With an accepting wooden sound, the door opens wide.", () => {
-                                SceneChangeManager.instance.ChangeScene("Game1");
-                            });
+                            ShowTextUI.instance.ShowMainText("The door opens wide. Revealing a plain wall on the other side.");
                         },
-                        () => { ShowTextUI.instance.ShowMainText("You prefer not to."); });
+                        () => { ShowTextUI.instance.ShowMainText("You'd rather leave it be."); });
                 });
                 break;
             case "plumbing":
@@ -54,7 +52,7 @@ public class RoomLogic2 : AbstractRoomLogic
                                 hydrant1 = true;
                             });
                         },
-                        () => { ShowTextUI.instance.ShowMainText("You prefer not to."); });
+                        () => { ShowTextUI.instance.ShowMainText("You'd prefer not to."); });
                 });
                 break;
             case "hydrant-2":
@@ -67,7 +65,7 @@ public class RoomLogic2 : AbstractRoomLogic
                     ShowTextUI.instance.ShowChoiceText("Open?",
                         () => {
                             ShowTextUI.instance.ShowMainText("Your ears perk up as you notice a small shiny object inside the metal box.", () => {
-                                ShowTextUI.instance.ShowMainText("Key obtained!");
+                                ShowTextUI.instance.ShowMainText("You found a small key!");
                                 hydrant2 = true;
                                 InventoryManager.instance.AddItemToInventory(inventoryItems.hall_key);
                             });
@@ -121,7 +119,7 @@ public class RoomLogic2 : AbstractRoomLogic
                         () => {
                             if (IsWordSelected(spellingWords.bright) && !IsWordSelected(spellingWords.windows))
                             {
-                                ShowTextUI.instance.ShowMainText("With a swift motion, take the fuse from the box.", () => {
+                                ShowTextUI.instance.ShowMainText("With a swift motion, you take the fuse from the box.", () => {
                                     SyncManager.instance.InvokeTurnOff("light2");
                                     InventoryManager.instance.AddItemToInventory(inventoryItems.fuse);
                                     SyncManager.instance.InvokeTurnOn("fuse2_off");
@@ -141,7 +139,7 @@ public class RoomLogic2 : AbstractRoomLogic
             case "fuse2_off":
                 if(IsItemSelected(inventoryItems.fuse))
                 {
-                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns green. Pleasant.");
+                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns a pleasant green color.");
                     InventoryManager.instance.RemoveItemFromInventory(inventoryItems.fuse);
                     SyncManager.instance.InvokeTurnOn("light2");
                     SyncManager.instance.InvokeTurnOn("fuse2_on");
@@ -159,7 +157,7 @@ public class RoomLogic2 : AbstractRoomLogic
             case "fuse1_off":
                 if (IsItemSelected(inventoryItems.fuse))
                 {
-                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns green. Pleasant.");
+                    ShowTextUI.instance.ShowMainText("The fuse clicks in place as the control light turns a pleasant green color.");
                     InventoryManager.instance.RemoveItemFromInventory(inventoryItems.fuse);
                     SyncManager.instance.InvokeTurnOn("light1");
                     SyncManager.instance.InvokeTurnOff("ScareArea");

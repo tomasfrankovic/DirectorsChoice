@@ -159,7 +159,7 @@ public class BookManager : MonoBehaviour
             editedText = editedText.Replace(atributes[i], replacement);
         }
         if (addedText)
-            editedText = $"<mark=#04d40f70>{editedText}</mark>";
+            editedText = $"<mark=#F4FF0070>{editedText}</mark>";
 
         return editedText;
     }
