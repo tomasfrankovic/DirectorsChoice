@@ -14,6 +14,10 @@ public class RoomLogic2 : AbstractRoomLogic
         for (int i = 0; i < SpellingWordsManager.instance.selectedWordsList.Count; i++)
             WordChanged(SpellingWordsManager.instance.selectedWordsList[i]);
 
+        TimersManager.instance.AddTimer(15f, () => {
+            BookManager.instance.ChangeIncrement(3);
+        }, true);
+
         BookManager.instance.UnlockNewChapter(2);
 
         if (PlayerMovement.hasFlashlight)

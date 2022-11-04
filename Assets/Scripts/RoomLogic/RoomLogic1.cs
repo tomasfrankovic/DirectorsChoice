@@ -111,7 +111,8 @@ public class RoomLogic1 : AbstractRoomLogic
                                 actualDoorState = doorState.locked; 
                                 //OnboardingManager.instance.ShowSpace(true);
                                 BookManager.instance.ChangeIncrement(1);
-                                TimersManager.instance.AddTimer(15f, () => { BookManager.instance.ChangeIncrement(2); }, true);
+                                TimersManager.instance.AddTimer(15f, () => { 
+                                    BookManager.instance.ChangeIncrement(2); }, true);
                                 });
                         });
                         break;
