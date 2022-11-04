@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+#if !UNITY_WEBGL
 using Firebase.Database;
 using Firebase.Extensions;
+#endif
 using System;
 
 public class FirebaseManager : MonoBehaviour
 {
+
     public static FirebaseManager instance;
     private void Awake()
     {
@@ -20,19 +23,24 @@ public class FirebaseManager : MonoBehaviour
         instance = this;
     }
 
+#if !UNITY_WEBGL
     DatabaseReference dbRef;
+#endif
     public TextMeshProUGUI text;
 
     public void Increment()
     {
+#if !UNITY_WEBGL
         if (dbRef == null)
             dbRef = FirebaseDatabase.DefaultInstance.RootReference;
 
         LoadData("counter", text);
+#endif
     }
 
     public void LoadData(string path, TextMeshProUGUI text)
     {
+#if !UNITY_WEBGL
         FirebaseDatabase.DefaultInstance
           .GetReference(path)
           .GetValueAsync().ContinueWithOnMainThread(task => {
@@ -50,6 +58,7 @@ public class FirebaseManager : MonoBehaviour
                   dbRef.Child(path).SetValueAsync(value);
               }
           });
+#endif
     }
 
 }
