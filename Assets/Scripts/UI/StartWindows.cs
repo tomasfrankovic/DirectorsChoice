@@ -40,7 +40,10 @@ public class StartWindows : MonoBehaviour
         canvasGroup.alpha = 0f;
 
         if(OnboardingManager.instance != null)
+        {
             Show();
+            blockImg.alpha = 1f;
+        }
     }
 
     public void ShowWin()
@@ -138,6 +141,7 @@ public class StartWindows : MonoBehaviour
             canvasGroup.blocksRaycasts = true;
             animLock = false;
         });
+
         blockImg.LeanAlpha(1f, 1f).setEaseOutCirc();
     }
 

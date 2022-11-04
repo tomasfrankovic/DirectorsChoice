@@ -71,9 +71,13 @@ public class InventoryManager : MonoBehaviour
         if(storedItems.Contains(inventoryItems.flashlight) && storedItems.Contains(inventoryItems.battery))
         {
             Debug.Log("Turn off battery");
-            RemoveItemFromInventory(inventoryItems.flashlight);
-            RemoveItemFromInventory(inventoryItems.battery);
-            PlayerMovement.instance.SetFlashlight();
+
+            ShowTextUI.instance.ShowMainText("You put the battery in the flashlight…", () => {
+                RemoveItemFromInventory(inventoryItems.flashlight);
+                RemoveItemFromInventory(inventoryItems.battery);
+                PlayerMovement.instance.SetFlashlight();
+                ShowTextUI.instance.ShowMainText("The bright beam of the flashlight illuminates the path in front of you.");
+            });
         }
     }
 

@@ -40,6 +40,7 @@ public class BookManager : MonoBehaviour
         chaptersUnlocked = chapterNum;
         ChaptersManagerUI.instance.Init();
 
+        SelectChapter(chapterNum);
         BookNotif.instance.Show();
     }
 
