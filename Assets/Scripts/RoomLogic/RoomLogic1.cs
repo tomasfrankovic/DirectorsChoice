@@ -12,6 +12,8 @@ public class RoomLogic1 : AbstractRoomLogic
     bool keyTook;
     bool batteryTook;
 
+    public AudioSource roomMusic;
+
     public enum doorState
     {
         initial,
@@ -106,7 +108,7 @@ public class RoomLogic1 : AbstractRoomLogic
                         if(OnboardingManager.instance)
                             OnboardingManager.instance.DoorInteracted();
                         ShowTextUI.instance.ShowMainText("You try twisting the handle… but the door refuses to open.", () => {
-                            SoundManager.instance.PlayMusic("music");
+                            roomMusic.Play();
                             ShowTextUI.instance.ShowMainText("A sudden chill runs down your spine.", () => {
                                 actualDoorState = doorState.locked; 
                                 //OnboardingManager.instance.ShowSpace(true);
