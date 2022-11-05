@@ -88,7 +88,7 @@ public class ShowTextUI : MonoBehaviour
     [ContextMenu("TestChoiceText")]
     public void TestChoiceText()
     {
-        ShowChoiceText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has", () => { ShowMainText("Klikol si 'yes' retard"); }, () => { ShowMainText("Klikol si 'no' retard"); });
+        ShowChoiceText("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has", () => { ShowMainText("Klikol si 'yes'"); }, () => { ShowMainText("Klikol si 'no'"); });
     }
 
     [ContextMenu("SkipText")]
@@ -135,7 +135,7 @@ public class ShowTextUI : MonoBehaviour
         {
             actualTMP.text = string.Concat(actualTMP.text, actualText[i]);
             if(i % 3 == 0)
-                SoundManager.instance.PlaySoundOneShot("text_sound");
+                SoundManager.instance.PlayTextSound();
             //Wait a certain amount of time, then continue with the for loop
             yield return new WaitForSeconds(timeLapse);
         }
