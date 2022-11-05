@@ -28,11 +28,18 @@ public class SoundManager : MonoBehaviour
     public AudioSource audioSourceSteps;
     public AudioSource audioSourceLaptop;
     public Vector2 pitchRandom = Vector2.one;
+    public Vector2 pitchText = Vector2.one;
 
     public void PlayStep()
     {
         audioSourceSteps.pitch = UnityEngine.Random.Range(pitchRandom.x, pitchRandom.y);
         audioSourceSteps.PlayOneShot(soundDict["footstep"]);
+    }
+
+    public void PlayTextSound()
+    {
+        audioSourceSteps.pitch = UnityEngine.Random.Range(pitchText.x, pitchText.y);
+        audioSourceSteps.PlayOneShot(soundDict["click_short"]);
     }
 
     public void PlaySoundOneShot(string clipName)

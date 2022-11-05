@@ -134,6 +134,8 @@ public class ShowTextUI : MonoBehaviour
         for (int i = 0; i < actualText.Length; i++)
         {
             actualTMP.text = string.Concat(actualTMP.text, actualText[i]);
+            if(i % 3 == 0)
+                SoundManager.instance.PlaySoundOneShot("click_short");
             //Wait a certain amount of time, then continue with the for loop
             yield return new WaitForSeconds(timeLapse);
         }

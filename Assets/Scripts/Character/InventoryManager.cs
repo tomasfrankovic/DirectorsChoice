@@ -73,6 +73,7 @@ public class InventoryManager : MonoBehaviour
             Debug.Log("Turn off battery");
 
             ShowTextUI.instance.ShowMainText("You put the battery in the flashlight…", () => {
+                SoundManager.instance.PlaySoundOneShot("click_short");
                 RemoveItemFromInventory(inventoryItems.flashlight);
                 RemoveItemFromInventory(inventoryItems.battery);
                 PlayerMovement.instance.SetFlashlight();
