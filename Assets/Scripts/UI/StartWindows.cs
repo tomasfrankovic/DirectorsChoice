@@ -28,6 +28,7 @@ public class StartWindows : MonoBehaviour
     public GameObject desktop;
     public GameObject word;
     public GameObject win;
+    public GameObject endScreen;
     public TextMeshProUGUI statsText;
 
     bool end;
@@ -48,14 +49,32 @@ public class StartWindows : MonoBehaviour
 
     public void ShowWin()
     {
-        win.SetActive(true);
-        desktop.SetActive(false);
+        win.SetActive(false);
         word.SetActive(false);
+        endScreen.SetActive(false);
+        desktop.SetActive(true);
+
+        TimersManager.instance.AddTimer(2, () => {
+            TimersManager.instance.AddTimer(0.5f, () => {
+                desktop.SetActive(false);
+                TimersManager.instance.AddTimer(0.5f, () =>
+                {
+                    desktop.SetActive(true);
+                    TimersManager.instance.AddTimer(0.35f, () =>
+                    {
+                        desktop.SetActive(false);
+                        endScreen.SetActive(true);
+                    }, false);
+                }, false);
+            }, false);
+
+        }, false);
+
         Show();
         end = true;
         FirebaseManager.instance.Increment();
     }
-
+    
     public void ShowDesktop()
     {
         desktop.SetActive(true);
@@ -131,7 +150,10 @@ public class StartWindows : MonoBehaviour
     {
         CancelTween();
         SoundManager.instance.PlaySoundOneShot("laptop_start");
-        SoundManager.instance.PlayLaptopAmbience("laptop_normal");
+        if(end)
+            SoundManager.instance.PlayLaptopAmbience("laptop_danger");
+        else
+            SoundManager.instance.PlayLaptopAmbience("laptop_normal");
         //canvasGroup.LeanAlpha(1f, 1f).setDelay(.2f).setEaseOutCirc().setOnComplete(() => {
         whiteBacklight.alpha = 1f;
         canvasGroup.alpha = 1f;

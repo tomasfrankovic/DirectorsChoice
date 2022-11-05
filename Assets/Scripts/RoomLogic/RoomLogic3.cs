@@ -31,8 +31,10 @@ public class RoomLogic3 : AbstractRoomLogic
                         ShowTextUI.instance.ShowMainText("The key fits snugly in the keyhole.", () => {
                             ShowTextUI.instance.ShowMainText("With a twist and a satisfying crackle, the cabinet unlocks, revealing its insides.", () =>
                             {
-                                ShowTextUI.instance.ShowMainText("You find a small battery cell.");
-                                InventoryManager.instance.AddItemToInventory(inventoryItems.battery);
+                                ShowTextUI.instance.ShowMainText("You find a small battery cell.", () =>
+                                {
+                                    InventoryManager.instance.AddItemToInventory(inventoryItems.battery);
+                                });
                                 cabinetLocked = false;
                             });
                         });
@@ -62,9 +64,11 @@ public class RoomLogic3 : AbstractRoomLogic
                     ShowTextUI.instance.ShowMainText("A regular, run-of-the-mill bathtub, you peek inside of it …", () => {
                         ShowTextUI.instance.ShowMainText("… you have a bad feeling about this.", () => {
                             ShowTextUI.instance.ShowMainText("To your surprise, there’s a handy little flashlight inside.", () => { 
-                                ShowTextUI.instance.ShowMainText("Holding it in your hands, you realize it's lacking a battery.");
+                                ShowTextUI.instance.ShowMainText("Holding it in your hands, you realize it's lacking a battery.", () =>
+                                {
+                                    InventoryManager.instance.AddItemToInventory(inventoryItems.flashlight);
+                                });
                             });
-                            InventoryManager.instance.AddItemToInventory(inventoryItems.flashlight);
                             flashlightTook = true;
                         });
                     });
