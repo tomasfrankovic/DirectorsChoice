@@ -9800,6 +9800,7 @@ MonoBehaviour:
     - hydrant_breath
     - hydrant_breath_fast
     - click_short
+    - text_sound
     valueData:
     - {fileID: 8300000, guid: 5ee59c3232875544aa7fa8bf282191a1, type: 3}
     - {fileID: 8300000, guid: 253490b6274dd0a408318479e34aa33b, type: 3}
@@ -9807,6 +9808,7 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 5f4a8ef3862161242896d67cf6e07807, type: 3}
     - {fileID: 8300000, guid: cdfb8672f8ca21348ad7f7bcda9435ee, type: 3}
     - {fileID: 8300000, guid: 3098b026c65c38f489ec505a3fb75408, type: 3}
+    - {fileID: 8300000, guid: bd9a06fa0ae13f34cb1efa6c828b86e6, type: 3}
   step: {fileID: 8300000, guid: 5ee59c3232875544aa7fa8bf282191a1, type: 3}
   audioSourceMusic: {fileID: 8825141976223139932}
   audioSourceSounds: {fileID: 209955223313932503}
