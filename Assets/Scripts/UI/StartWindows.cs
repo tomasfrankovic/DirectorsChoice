@@ -130,7 +130,7 @@ public class StartWindows : MonoBehaviour
     public void ShowScreen()
     {
         CancelTween();
-        SoundManager.instance.PlaySound("laptop_start");
+        SoundManager.instance.PlaySoundOneShot("laptop_start");
         SoundManager.instance.PlayLaptopAmbience("laptop_normal");
         //canvasGroup.LeanAlpha(1f, 1f).setDelay(.2f).setEaseOutCirc().setOnComplete(() => {
         whiteBacklight.alpha = 1f;
@@ -148,7 +148,7 @@ public class StartWindows : MonoBehaviour
     public void HideScreen()
     {
         CancelTween();
-        SoundManager.instance.PlaySound("laptop_end");
+        SoundManager.instance.PlaySoundOneShot("laptop_end");
         SoundManager.instance.StopLaptopAmbience();
 
         animLock = true;

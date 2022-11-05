@@ -86,10 +86,19 @@ public class RoomLogic2 : AbstractRoomLogic
                 ShowTextUI.instance.ShowMainText("A closed hydrant box. Who knows what treasures lie within?", () => {
                     ShowTextUI.instance.ShowChoiceText("Open?",
                         () => {
-                            ShowTextUI.instance.ShowMainText("You approach the box …", () => {                                
+                            ShowTextUI.instance.ShowMainText("You approach the box …", () => {
+                                SoundManager.instance.PlaySound("hydrant_breath", true);
+                                SoundManager.instance.audioSourceSounds.volume = 0.25f;
                                 ShowTextUI.instance.ShowMainText("… a faint sound of breathing can be heard coming from within.", () => {
+                                    SoundManager.instance.PlaySound("hydrant_breath_fast", true);
+                                    SoundManager.instance.audioSourceSounds.volume = 0.5f;
                                     ShowTextUI.instance.ShowMainText("As you reach for the handle, the breathing becomes faster and faster.", () => {
-                                        ShowTextUI.instance.ShowMainText("This doesn't feel right. Maybe some things are better left unopened.");
+                                        ShowTextUI.instance.ShowMainText("This doesn't feel right. Maybe some things are better left unopened.", () =>
+                                        {
+                                            SoundManager.instance.audioSourceSounds.volume = 1;
+                                            SoundManager.instance.audioSourceSounds.Stop();
+                                        });
+                                        SoundManager.instance.audioSourceSounds.volume /= 2;
                                         hydrant3 = true;
                                     });
                                 });

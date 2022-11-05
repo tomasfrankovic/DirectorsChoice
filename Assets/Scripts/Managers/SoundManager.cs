@@ -35,7 +35,7 @@ public class SoundManager : MonoBehaviour
         audioSourceSteps.PlayOneShot(soundDict["footstep"]);
     }
 
-    public void PlaySound(string clipName)
+    public void PlaySoundOneShot(string clipName)
     {
         if(!soundDict.ContainsKey(clipName))
         {
@@ -43,6 +43,19 @@ public class SoundManager : MonoBehaviour
             return;
         }
         audioSourceSounds.PlayOneShot(soundDict[clipName]);
+    }
+
+    public void PlaySound(string clipName, bool loop = false)
+    {
+        if (!soundDict.ContainsKey(clipName))
+        {
+            Debug.LogWarning("Sounds dict doesn't contain " + clipName);
+            return;
+        }
+        audioSourceSounds.loop = loop;
+
+        audioSourceSounds.clip = soundDict[clipName];
+        audioSourceSounds.Play();
     }
 
     public void PlayLaptopAmbience(string clipName)
