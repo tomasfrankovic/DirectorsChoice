@@ -92,6 +92,10 @@ public class RoomLogic1 : AbstractRoomLogic
                                 SyncManager.instance.InvokeTurnOff("bookcase");
                                 InventoryManager.instance.RemoveItemFromInventory(inventoryItems.valve);
                                 ShowTextUI.instance.ShowMainText("While panting slightly from exhaustion, you stare at a glistening metal door in front of you.");
+                                AnalyticsClass.SendCustomEvent("SecretDoorFound",
+                                    new Dictionary<string, object>() {
+                                        {"time", Time.unscaledTime }
+                                    });
                             });
                         });
                     }
@@ -125,6 +129,10 @@ public class RoomLogic1 : AbstractRoomLogic
                                 ShowTextUI.instance.ShowMainText("With a twist and a satisfying crackle, the door unlocks.", () => {
                                     actualDoorState = doorState.unlocked;
                                     InventoryManager.instance.RemoveItemFromInventory(inventoryItems.key);
+                                    AnalyticsClass.SendCustomEvent("MainDoorsUnlocked",
+                                        new Dictionary<string, object>() {
+                                            {"time", Time.unscaledTime }
+                                        });
                                 });
                             });
                         }

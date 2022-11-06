@@ -9,5 +9,10 @@ public class RoomLogic4 : MonoBehaviour
     {
         SceneChangeManager.instance.EndTransition();
         StartWindows.instance.ShowWin();
+
+        AnalyticsClass.SendCustomEvent("FinishedGame",
+                new Dictionary<string, object>() {
+                    {"time", Time.unscaledTime }
+                });
     }
 }

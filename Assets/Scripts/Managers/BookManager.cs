@@ -42,6 +42,14 @@ public class BookManager : MonoBehaviour
 
         SelectChapter(chapterNum);
         BookNotif.instance.Show();
+
+        if(chapterNum >= 2)
+        {
+            AnalyticsClass.SendCustomEvent("UnlockedChapter2",
+                new Dictionary<string, object>() {
+                    {"time", Time.unscaledTime }
+                });
+        }
     }
 
     public void ChangeIncrement(int increment)
